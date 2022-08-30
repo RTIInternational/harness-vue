@@ -35,6 +35,16 @@ export default function getFilterHelperFunctions() {
     },
 
     /**
+     * Returns the filter object for a given filter key
+     *
+     * @param  {String} key a filter key
+     */
+    getFilterObject(key) {
+      this._validFilterKey(key);
+      return this.getFilters[key];
+    },
+
+    /**
      * returns the props for a given filter, if they exist
      *
      * @param  {String} key a filter key
@@ -61,7 +71,7 @@ export default function getFilterHelperFunctions() {
      */
     getOptionsForFilter(key) {
       this._validFilterKey(key);
-      return this[`${capitalize(key)}Options`];
+      return this[`${key}Options`];
     },
 
     /**

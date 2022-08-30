@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "file-saver": "^2.0.5",
@@ -14,7 +16,9 @@
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@pinia/testing": "^0.0.14",
     "@vitejs/plugin-vue": "^3.0.3",
+    "c8": "^7.12.0",
     "vite": "^3.0.7"
   }
 }

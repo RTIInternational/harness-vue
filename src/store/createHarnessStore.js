@@ -23,6 +23,5 @@ export default function createHarnessStore(pageObject) {
   });
   const store = storeFunc();
   subscribeActions(store, pageObject);
-  store.initializeDefaults();
   return storeFunc;
 }
