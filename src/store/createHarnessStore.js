@@ -8,7 +8,7 @@ import getChartHelperFunctions from "./charts";
 import getDataHelperFunctions from "./data";
 import subscribeActions from "./subscriptions";
 
-export default function createHarnessStore(pageObject) {
+export default function createHarnessStore(pageObject, options) {
   // options syntax
   const storeFunc = defineStore(pageObject.key, {
     state: () => getState(pageObject),
@@ -21,7 +21,7 @@ export default function createHarnessStore(pageObject) {
       ...getDataHelperFunctions(),
     },
   });
-  const store = storeFunc();
+  const store = storeFunc(options.pinia);
   subscribeActions(store, pageObject);
   return storeFunc;
 }

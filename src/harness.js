@@ -6,7 +6,7 @@ import harnessMixin from "./mixin/mixin.js";
 const harnessPlugin = {
   install: (app, options) => {
     // create harness metadata store in pinia
-    const harness = harnessStore();
+    const harness = harnessStore(options.pinia);
 
     // validate page files
     const validatedPages = pages(options.pages);

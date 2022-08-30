@@ -1,8 +1,16 @@
 {
-  "name": "harness-vue",
-  "private": true,
+  "name": "@rtidatascience/harness-vue",
+  "author": "RTI CDS <alexharding@rti.org>",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "main": "./dist/harness-vue.es.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "*.json",
+    "*.js"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
