@@ -23,7 +23,6 @@ function runSubscriptions(name, args, store, pageObject, hook) {
     // and run their before/after hooks
     Object.keys(store.getFilters).forEach((filterKey) => {
       const filterActionString = `set${capitalize(filterKey)}Filter`;
-      console.log(filterActionString);
       if (
         name === filterActionString &&
         store.getFilters[filterKey][`${hook}Set`]
