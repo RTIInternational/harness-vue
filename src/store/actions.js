@@ -1,5 +1,6 @@
 import { capitalize } from "./utils";
 import metadataStore from "./harnessStore";
+import getDefaultOption from "./defaultOption";
 export default function getActions(pageObject) {
   const actions = {
     setRequestCache(payload) {
@@ -37,15 +38,16 @@ export default function getActions(pageObject) {
       }
     },
     initializeDefaults(payload = null) {
-      let filters = pageObject.filters();
+      let filterKeys = Object.keys(this.getFilters);
       if (payload) {
-        filters = Object.keys(filters)
-          .filter((key) => payload.includes(key))
-          .reduce((obj, key) => {
-            obj[key] = filters[key];
-            return obj;
-          }, {});
+        filterKeys = filterKeys.filter((fKey) => payload.includes(fKey));
       }
+      filterKeys.forEach((filterKey) => {
+        this.setFilter(
+          filterKey,
+          getDefaultOption(filterKey, this.getOptionsForFilter(filterKey))
+        );
+      });
     },
   };
   const filters = pageObject.filters();

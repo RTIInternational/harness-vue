@@ -6,6 +6,7 @@ import getValidationFunctions from "./validation";
 import getFilterHelperFunctions from "./filters";
 import getChartHelperFunctions from "./charts";
 import getDataHelperFunctions from "./data";
+import subscribeActions from "./subscriptions";
 
 export default function createHarnessStore(pageObject) {
   // options syntax
@@ -20,6 +21,8 @@ export default function createHarnessStore(pageObject) {
       ...getDataHelperFunctions(),
     },
   });
-  // TODO: add subscriptions for actions
+  const store = storeFunc();
+  subscribeActions(store, pageObject);
+  store.initializeDefaults();
   return storeFunc;
 }

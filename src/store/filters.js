@@ -61,7 +61,7 @@ export default function getFilterHelperFunctions() {
      */
     getOptionsForFilter(key) {
       this._validFilterKey(key);
-      return this.store.getters[`${capitalize(key)}Options`];
+      return this[`${capitalize(key)}Options`];
     },
 
     /**
