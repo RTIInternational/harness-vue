@@ -2,7 +2,7 @@
   "name": "@rtidatascience/harness-vue",
   "author": "RTI CDS <alexharding@rti.org>",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "main": "./dist/harness-vue.es.js",
   "files": [
