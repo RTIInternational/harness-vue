@@ -1,6 +1,6 @@
 import { capitalize } from "./utils";
 
-export default function getGetters(pageObject) {
+export default function getGetters(pageDefinition) {
   // add initial getter for raw data
   const getters = {
     getRequestCache(state) {
@@ -21,7 +21,7 @@ export default function getGetters(pageObject) {
   };
   // add getter for each filter
   // add getter for each filter's options
-  const filters = pageObject.filters();
+  const filters = pageDefinition.filters();
   for (const filterKey in filters) {
     const filterGetter = function (state) {
       return state[`${filterKey}Filter`];
@@ -34,7 +34,7 @@ export default function getGetters(pageObject) {
   }
 
   // add getter for each chart data container
-  const charts = pageObject.charts();
+  const charts = pageDefinition.charts();
   for (const chartKey in charts) {
     const getter = function (state) {
       return state[`${chartKey}ChartData`];

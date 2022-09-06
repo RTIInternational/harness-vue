@@ -15,7 +15,7 @@ describe("DV Filter functions", () => {
   it("Can Get Filter Object", () => {
     let hs = mockHs();
     Object.keys(page.filters()).forEach((filterKey) => {
-      expect(hs.getFilterObject(filterKey)).toEqual(hs.filters[filterKey]);
+      expect(hs.getFilterDefinition(filterKey)).toEqual(hs.filters[filterKey]);
     });
   });
   it("Can Get Filter", () => {

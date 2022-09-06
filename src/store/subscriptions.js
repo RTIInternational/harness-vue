@@ -1,22 +1,22 @@
 import { capitalize } from "./utils";
 
-export default function subscribeActions(store, pageObject) {
+export default function subscribeActions(store, pageDefinition) {
   store.$onAction(({ name, store, args, after, onError }) => {
     //before action is called
-    runSubscriptions(name, args, store, pageObject, "before");
+    runSubscriptions(name, args, store, pageDefinition, "before");
     after((result) => {
-      runSubscriptions(name, args, store, pageObject, "after");
+      runSubscriptions(name, args, store, pageDefinition, "after");
     });
   });
 }
 
-function runSubscriptions(name, args, store, pageObject, hook) {
+function runSubscriptions(name, args, store, pageDefinition, hook) {
   // for loadData actions, both toggle the dataLoading state variable
   // and also check for before/after loadData hooks
   if (name === "loadData") {
     store.toggleDataLoading();
-    if (pageObject[`${hook}LoadData`]) {
-      pageObject[`${hook}LoadData`]({ name, args }, store);
+    if (pageDefinition[`${hook}LoadData`]) {
+      pageDefinition[`${hook}LoadData`]({ name, args }, store);
     }
   } else if (name.includes("Filter") && name !== "setFilter") {
     // iterate over filters to find if any match the action name

@@ -1,10 +1,10 @@
-export default function createHarnessRoute(store, pageObject) {
+export default function createHarnessRoute(store, pageDefinition) {
   return {
-    path: "/" + pageObject.key,
-    name: pageObject.key,
-    component: pageObject.pageComponent,
-    props: pageObject.pageProps ? pageObject.pageProps : false,
-    beforeEnter: pageObject.retrieveData
+    path: "/" + pageDefinition.key,
+    name: pageDefinition.key,
+    component: pageDefinition.pageComponent,
+    props: pageDefinition.pageProps ? pageDefinition.pageProps : false,
+    beforeEnter: pageDefinition.retrieveData
       ? (to, from, next) => {
           if (from.name) {
             store.clearData();

@@ -1,17 +1,17 @@
 import getDefaultOption from "./defaultOption";
 
-export default function getState(pageObject) {
+export default function getState(pageDefinition) {
   // create initial state with raw data
   const state = {
-    page: pageObject,
-    filters: pageObject.filters(),
-    charts: pageObject.charts(),
+    pageDefinition: pageDefinition,
+    filters: pageDefinition.filters(),
+    charts: pageDefinition.charts(),
     requestCache: null,
     dataLoading: false,
   };
 
   // add filter and lookup for each possible filter
-  const filters = pageObject.filters();
+  const filters = pageDefinition.filters();
   for (const filterKey in filters) {
     state[`${filterKey}Filter`] = getDefaultOption(
       filters[filterKey],
@@ -21,7 +21,7 @@ export default function getState(pageObject) {
   }
 
   // add chart data container for each chart type
-  const charts = pageObject.charts();
+  const charts = pageDefinition.charts();
   for (const chartkey in charts) {
     state[`${chartkey}ChartData`] = null;
   }

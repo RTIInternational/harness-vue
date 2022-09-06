@@ -7,6 +7,6 @@
 </template>
 <script>
 export default {
-  name: 'TestPage2Component'
-}
+  name: "TestPage2Component",
+};
 </script>

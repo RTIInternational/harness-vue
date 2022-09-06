@@ -15,7 +15,7 @@ describe("DV Chart functions", () => {
   it("Can Get Chart Object", () => {
     let hs = mockHs();
     Object.keys(page.charts()).forEach((chartKey) => {
-      expect(hs.getChartObject(chartKey)).toEqual(hs.charts[chartKey]);
+      expect(hs.getChartDefinition(chartKey)).toEqual(hs.charts[chartKey]);
     });
   });
   it("Can Get Chart Data", () => {

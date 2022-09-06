@@ -8,7 +8,7 @@ export default function getChartHelperFunctions() {
      *
      * @param  {String} key a chart key
      */
-    getChartObject(key) {
+    getChartDefinition(key) {
       this._validChartKey(key);
       return this.charts[key];
     },

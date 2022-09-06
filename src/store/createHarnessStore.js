@@ -8,13 +8,13 @@ import getChartHelperFunctions from "./charts";
 import getDataHelperFunctions from "./data";
 import subscribeActions from "./subscriptions";
 
-export default function createHarnessStore(pageObject, options) {
+export default function createHarnessStore(pageDefinition, options) {
   // options syntax
-  const storeFunc = defineStore(pageObject.key, {
-    state: () => getState(pageObject),
-    getters: getGetters(pageObject),
+  const storeFunc = defineStore(pageDefinition.key, {
+    state: () => getState(pageDefinition),
+    getters: getGetters(pageDefinition),
     actions: {
-      ...getActions(pageObject),
+      ...getActions(pageDefinition),
       ...getValidationFunctions(),
       ...getFilterHelperFunctions(),
       ...getChartHelperFunctions(),
@@ -22,6 +22,6 @@ export default function createHarnessStore(pageObject, options) {
     },
   });
   const store = storeFunc(options.pinia);
-  subscribeActions(store, pageObject);
+  subscribeActions(store, pageDefinition);
   return storeFunc;
 }

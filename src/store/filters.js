@@ -39,7 +39,7 @@ export default function getFilterHelperFunctions() {
      *
      * @param  {String} key a filter key
      */
-    getFilterObject(key) {
+    getFilterDefinition(key) {
       this._validFilterKey(key);
       return this.getFilters[key];
     },

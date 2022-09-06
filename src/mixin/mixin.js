@@ -13,8 +13,7 @@ export default function mixin() {
     beforeCreate() {
       // if route name is a valid harness page, use it as waypoint
       let waypoint = false;
-      // shim in this.$store for vuex mapGetters functions
-      // vuex mapGetters depends on this.$store: https://github.com/vuejs/vuex/blob/dev/src/helpers.js#L81
+
       const harnessMetadata = harnessStore();
 
       if (
@@ -38,12 +37,12 @@ export default function mixin() {
         // get page store
         const pageFunc = harnessMetadata.getPageStores[waypoint];
         // const pageStore = pageFunc();
-        const pageObject = harnessMetadata.getPageObjects[waypoint];
-        //   const pageObject = { key: "foo" };
-        const state = getAttributeNames(getState(pageObject));
-        const getters = getAttributeNames(getGetters(pageObject));
+        const pageDefinition = harnessMetadata.getpageDefinitions[waypoint];
+        //   const pageDefinition = { key: "foo" };
+        const state = getAttributeNames(getState(pageDefinition));
+        const getters = getAttributeNames(getGetters(pageDefinition));
         const actions = getAttributeNames({
-          ...getActions(pageObject),
+          ...getActions(pageDefinition),
           ...getValidationFunctions(),
           ...getFilterHelperFunctions(),
           ...getChartHelperFunctions(),

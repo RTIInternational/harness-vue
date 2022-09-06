@@ -15,12 +15,12 @@ const harnessPlugin = {
     // register it in Pinia
     // add the function to the metadata store
     for (const Page of validatedPages) {
-      const pageObject = new Page();
-      const pageFunc = createHarnessStore(pageObject, options);
+      const pageDefinition = new Page();
+      const pageFunc = createHarnessStore(pageDefinition, options);
       const pageStore = pageFunc();
-      harness.addStore(pageObject.key, pageObject, pageFunc);
+      harness.addStore(pageDefinition.key, pageDefinition, pageFunc);
       if (options.router) {
-        const pageRoute = createHarnessRoute(pageStore, pageObject);
+        const pageRoute = createHarnessRoute(pageStore, pageDefinition);
         options.router.addRoute(pageRoute);
       }
     }

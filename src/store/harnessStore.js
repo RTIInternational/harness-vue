@@ -1,22 +1,22 @@
 import { defineStore } from "pinia";
 
-export default defineStore("harnessStore", {
-  state: () => ({ pages: [], pageObjects: {}, pageStores: {} }),
+export default defineStore("harness", {
+  state: () => ({ pages: [], pageDefinitions: {}, pageStores: {} }),
   getters: {
     getPages() {
       return this.pages;
     },
-    getPageObjects() {
-      return this.pageObjects;
+    getpageDefinitions() {
+      return this.pageDefinitions;
     },
     getPageStores() {
       return this.pageStores;
     },
   },
   actions: {
-    addStore(key, object, store) {
+    addStore(key, definition, store) {
       this.pages.push(key);
-      this.pageObjects[key] = object;
+      this.pageDefinitions[key] = definition;
       this.pageStores[key] = store;
     },
   },

@@ -1,7 +1,7 @@
 import { capitalize } from "./utils";
 import metadataStore from "./harnessStore";
 import getDefaultOption from "./defaultOption";
-export default function getActions(pageObject) {
+export default function getActions(pageDefinition) {
   const actions = {
     setRequestCache(payload) {
       this.requestCache = payload;
@@ -10,22 +10,22 @@ export default function getActions(pageObject) {
       this.dataLoading = !this.dataLoading;
     },
     async loadData() {
-      if (!pageObject.retrieveData) {
+      if (!pageDefinition.retrieveData) {
         throw String(
           "retrieveData function is missing in page file. retrieveData must exist to use LOAD_DATA action"
         );
       }
       const harnessStore = metadataStore();
-      const pageStore = harnessStore.getPageStores[pageObject.key]();
-      const data = await pageObject
-        .retrieveData(pageObject, pageStore)
+      const pageStore = harnessStore.getPageStores[pageDefinition.key]();
+      const data = await pageDefinition
+        .retrieveData(pageDefinition, pageStore)
         .then(function (response) {
           return response;
         })
         .catch(function (error) {
           throw Error(error);
         });
-      for (const chartKey in pageObject.charts()) {
+      for (const chartKey in pageDefinition.charts()) {
         if (data[chartKey] === null) {
           throw String("Retrieved data is missing data for chart " + chartKey);
         }
@@ -33,7 +33,7 @@ export default function getActions(pageObject) {
       }
     },
     clearData() {
-      for (const chartKey in pageObject.charts()) {
+      for (const chartKey in pageDefinition.charts()) {
         this.setChartData(chartKey, null);
       }
     },
@@ -50,7 +50,7 @@ export default function getActions(pageObject) {
       });
     },
   };
-  const filters = pageObject.filters();
+  const filters = pageDefinition.filters();
   for (const filterKey in filters) {
     const filterAction = function (payload) {
       this[`${filterKey}Filter`] = payload;
@@ -62,7 +62,7 @@ export default function getActions(pageObject) {
     actions[`set${capitalize(filterKey)}Options`] = optionsAction;
   }
 
-  const charts = pageObject.charts();
+  const charts = pageDefinition.charts();
   for (const chartKey in charts) {
     const chartAction = function (payload) {
       this[`${chartKey}ChartData`] = payload;
