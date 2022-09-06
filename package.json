@@ -6,10 +6,7 @@
   "type": "module",
   "main": "./dist/harness-vue.es.js",
   "files": [
-    "dist/*",
-    "src/*",
-    "*.json",
-    "*.js"
+    "dist/*"
   ],
   "scripts": {
     "dev": "vite",
