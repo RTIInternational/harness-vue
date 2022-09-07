@@ -40,7 +40,6 @@ export default function mixin(pinia) {
         const pageDefinition = harnessMetadata.getpageDefinitions[waypoint];
         //   const pageDefinition = { key: "foo" };
         const state = getAttributeNames(getState(pageDefinition));
-        const getters = getAttributeNames(getGetters(pageDefinition));
         const actions = getAttributeNames({
           ...getActions(pageDefinition),
           ...getValidationFunctions(),
