@@ -71,6 +71,6 @@ const pinia = createPinia()
 
 app.use(pinia)
 app.use(harnessPlugin, { pinia, pages, router })
-app.mixin(harnessMixin());
+app.mixin(harnessMixin(pinia));
 app.mount("#app");
 ```
