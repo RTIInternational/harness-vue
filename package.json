@@ -12,8 +12,7 @@
   "bugs": {
     "url": "https://github.com/RTIInternational/harness-vue/issues"
   },
-  "homepage": "https://next.harnessjs.org"
-}
+  "homepage": "https://next.harnessjs.org",
   "main": "./dist/harness-vue.es.js",
   "files": [
     "dist/*"
