@@ -10,15 +10,15 @@ export default function getActions(pageDefinition) {
       this.dataLoading = !this.dataLoading;
     },
     async loadData() {
-      if (!pageDefinition.retrieveData) {
+      if (!pageDefinition.loadData) {
         throw String(
-          "retrieveData function is missing in page file. retrieveData must exist to use LOAD_DATA action"
+          "loadData function is missing in page file. loadData must exist to use LOAD_DATA action"
         );
       }
       const harnessStore = metadataStore();
       const pageStore = harnessStore.getPageStores[pageDefinition.key]();
       const data = await pageDefinition
-        .retrieveData(pageDefinition, pageStore)
+        .loadData(pageDefinition, pageStore)
         .then(function (response) {
           return response;
         })

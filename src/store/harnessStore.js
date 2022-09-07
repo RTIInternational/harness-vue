@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export default defineStore("harness", {
+export default defineStore("harnessVue", {
   state: () => ({ pages: [], pageDefinitions: {}, pageStores: {} }),
   getters: {
     getPages() {
