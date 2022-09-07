@@ -33,7 +33,7 @@ export default function getActions(pageDefinition) {
       }
     },
     clearData() {
-      for (const chartKey in pageDefinition.charts()) {
+      for (const chartKey in this.pageDefinition.charts()) {
         this.setChartData(chartKey, null);
       }
     },
@@ -45,7 +45,10 @@ export default function getActions(pageDefinition) {
       filterKeys.forEach((filterKey) => {
         this.setFilter(
           filterKey,
-          getDefaultOption(filterKey, this.getOptionsForFilter(filterKey))
+          getDefaultOption(
+            this.getFilterDefinition(filterKey),
+            this.getOptionsForFilter(filterKey)
+          )
         );
       });
     },
