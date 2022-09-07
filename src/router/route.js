@@ -4,7 +4,7 @@ export default function createHarnessRoute(store, pageDefinition) {
     name: pageDefinition.key,
     component: pageDefinition.pageComponent,
     props: pageDefinition.pageProps ? pageDefinition.pageProps : false,
-    beforeEnter: pageDefinition.retrieveData
+    beforeEnter: pageDefinition.loadData
       ? (to, from, next) => {
           if (from.name) {
             store.clearData();
