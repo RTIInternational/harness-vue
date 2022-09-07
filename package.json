@@ -4,6 +4,16 @@
   "private": false,
   "version": "0.1.1",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RTIInternational/harness-vue.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RTIInternational/harness-vue/issues"
+  },
+  "homepage": "https://next.harnessjs.org"
+}
   "main": "./dist/harness-vue.es.js",
   "files": [
     "dist/*"

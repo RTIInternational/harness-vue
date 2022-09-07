@@ -1,7 +1,6 @@
-# Vue 3 + Vite
+# Harness-Vue
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This repository contains the core library for Harness Vue. For documentation and availability, please see the following:
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+* [Documentation website](https://next.harnessjs.org)
+* [NPM Repository](https://www.npmjs.com/package/@rtidatascience/harness-vue)
