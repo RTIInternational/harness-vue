@@ -1,6 +1,5 @@
 import getActions from "../store/actions";
 import getState from "../store/state";
-import getGetters from "../store/getters";
 import getValidationFunctions from "../store/validation";
 import getFilterHelperFunctions from "../store/filters";
 import getChartHelperFunctions from "../store/charts";
@@ -54,6 +53,9 @@ export default function mixin(pinia) {
         this.$options.computed = {
           ...this.$options.computed,
           ...mapState(pageFunc, state),
+          pageStore() {
+            return pageFunc();
+          },
         };
       }
     },
