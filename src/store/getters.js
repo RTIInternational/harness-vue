@@ -9,11 +9,20 @@ export default function getGetters(pageDefinition) {
     getPage(state) {
       return state.page;
     },
+    getPageDefinition(state) {
+      return state.pageDefinition;
+    },
     getFilters(state) {
       return state.filters;
     },
+    getFilterKeys(state) {
+      return Object.keys(state.filters);
+    },
     getCharts(state) {
       return state.charts;
+    },
+    getChartKeys(state) {
+      return Object.keys(state.charts);
     },
     getDataLoading(state) {
       return state.dataLoading;

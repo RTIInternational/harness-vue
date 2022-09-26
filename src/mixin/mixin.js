@@ -5,7 +5,7 @@ import getFilterHelperFunctions from "../store/filters";
 import getChartHelperFunctions from "../store/charts";
 import getDataHelperFunctions from "../store/data";
 import harnessStore from "../store/harnessStore";
-import { mapActions, mapState } from "pinia";
+import { mapActions, mapState, mapGetters } from "pinia";
 
 export default function mixin(pinia) {
   return {
@@ -53,6 +53,7 @@ export default function mixin(pinia) {
         this.$options.computed = {
           ...this.$options.computed,
           ...mapState(pageFunc, state),
+          ...mapGetters(pageFunc, state),
           pageStore() {
             return pageFunc();
           },

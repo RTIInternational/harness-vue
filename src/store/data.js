@@ -53,23 +53,24 @@ export default function getDataHelperFunctions() {
     applyFilterToColumn(filter, column, data, allKey = null) {
       // if data is string, get chart data
       data = this._validateData(data);
-      if (!this.getFilter(filter)) {
+      const filterValue = this.getFilter(filter);
+      if (!filterValue) {
         throw String("Filter value is empty");
       }
 
       return data.filter((datum) => {
         // handle 'multiple' filters where value is an array
-        if (Array.isArray(this.getFilter(filter))) {
-          const match = this.getFilter(filter).includes(datum[column]);
+        if (Array.isArray(filterValue)) {
+          const match = filterValue.includes(datum[column]);
           if (allKey) {
-            return this.getFilter(filter).includes(allKey) || match;
+            return filterValue.includes(allKey) || match;
           }
           return match;
         }
         // handle normal filters with a single value
-        const match = this.getFilter(filter) === datum[column];
+        const match = filterValue === datum[column];
         if (allKey) {
-          return this.getFilter(filter) === allKey || match;
+          return filterValue === allKey || match;
         }
         return match;
       });

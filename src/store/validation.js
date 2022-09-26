@@ -15,14 +15,15 @@ export default function getValidationFunctions() {
       }
       return data;
     },
+
     _validFilterKey(key) {
-      if (!this.filters.hasOwnProperty(key)) {
+      if (!Object.keys(this.getFilters).includes(key)) {
         throw String(key + " is not a valid filter");
       }
     },
 
     _validChartKey(key) {
-      if (!this.charts.hasOwnProperty(key)) {
+      if (!Object.keys(this.getCharts).includes(key)) {
         throw String(key + " is not a valid chart");
       }
     },
