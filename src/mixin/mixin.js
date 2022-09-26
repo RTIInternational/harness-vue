@@ -55,7 +55,7 @@ export default function mixin(pinia) {
           ...mapState(pageFunc, state),
           ...mapGetters(pageFunc, state),
           pageStore() {
-            return pageFunc();
+            return pageFunc(pinia);
           },
         };
       }
