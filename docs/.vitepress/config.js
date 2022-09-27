@@ -25,28 +25,44 @@ export default {
                 text: 'API',
                 collapsible: true,
                 items: [
-                    {text: 'Harness Vue Metadata', link: '/api/metadata'},
+                    {text: 'Harness-Vue Metadata', link: '/api/metadata'},
                     {text: 'Charts', link: '/api/charts'},
                     {text: 'Filters', link: '/api/filters'},
                     {text: 'Data and Statistics Helpers', link: '/api/data'}
                 ]
             },
             {
-                text: 'Migration Guide',
+                text: 'Migrating From Harness',
                 collapsible: true,
                 items: [
-                    {text: 'Migration from Harness', link: '/migration/'}
+                    {text: 'Migration Guide', link: '/migration/'}
                 ]
             },
             {
-                text: 'Harness Vue Ecosystem',
+                text: 'Harness-Vue Ecosystem',
                 collapsible: true,
                 items: [
                     {text: 'Github', link: 'https://github.com/RTIInternational/harness-vue'},
-                    {text: 'Harness Vue Bootstrap', link: 'https://ui.harnessjs.org'},
-                    {text: 'Harness Vue Starter Template', link: 'https://github.com/RTIInternational/harness-vue-starter-template'}
+                    {text: 'Harness-Vue Bootstrap', link: 'https://ui.harnessjs.org'},
+                    {text: 'Harness-Vue Starter Template', link: 'https://github.com/RTIInternational/harness-vue-starter-template'}
                 ]
             }
+        ],
+        footer: {
+            message: 'Released under the MIT License.',
+            copyright: 'Built by <span class="vp-doc"><a href="https://www.rti.org">RTI International</a></span> Center for Data Science'
+        },
+        nav: [
+            { text: 'Guide', link: '/introduction/' },
+            { text: 'API', items: [
+                { text: 'Charts', link: '/api/charts' },
+                { text: 'Filters', link: '/api/filters' },
+                { text: 'Data and Statistics', link: '/api/data' },
+
+            ]}
+        ],
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/RTIInternational/harness-vue' }
         ]
     }
   }
