@@ -29,7 +29,7 @@ jobs:
           docker exec -t harness-vue-ci aws configure set aws_access_key_id ${{ secrets.S3_ONLY_AWS_ACCESS_KEY_ID }}
           docker exec -t harness-vue-ci aws configure set aws_secret_access_key ${{ secrets.S3_ONLY_AWS_SECRET_ACCESS_KEY }}
           docker exec -t harness-vue-ci aws s3 rm s3://harness-docs --recursive
-          docker exec -t harness-vue-ci aws s3 sync /docs/.vitepress/dist s3://harness-docs
+          docker exec -t harness-vue-ci aws s3 sync docs/.vitepress/dist s3://harness-docs
           docker exec -t harness-vue-ci aws cloudfront create-invalidation --distribution-id E3K46T9KULV7VZ --paths "/*"
 
           
