@@ -1,10 +1,10 @@
 import { capitalize } from "./utils";
 
 export default function subscribeActions(store, pageDefinition) {
-  store.$onAction(({ name, store, args, after, onError }) => {
+  store.$onAction(({ name, store, args, after }) => {
     //before action is called
     runSubscriptions(name, args, store, pageDefinition, "before");
-    after((result) => {
+    after(() => {
       runSubscriptions(name, args, store, pageDefinition, "after");
     });
   });

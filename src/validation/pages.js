@@ -4,6 +4,7 @@ const pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
 
 export default function pages(pages) {
   // if vue in development mode, validate each page file
+  // eslint-disable-next-line
   if (process.env.NODE_ENV === "development") {
     for (const Page of pages) {
       validatePageFile(new Page());

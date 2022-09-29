@@ -5,7 +5,7 @@ export default class TestPage1 {
   key = "TestPage1";
   pageComponent = TestPage1Component;
   pageProps = {};
-  retrieveData = async function () {
+  loadData = async function () {
     let data = {};
     for (const chartKey in this.charts()) {
       data[chartKey] = [chartKey, "success"];
