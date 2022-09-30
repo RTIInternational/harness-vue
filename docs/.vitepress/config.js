@@ -43,7 +43,7 @@ export default {
                 collapsible: true,
                 items: [
                     {text: 'Github', link: 'https://github.com/RTIInternational/harness-vue'},
-                    {text: 'Harness-Vue Bootstrap', link: 'https://ui.harnessjs.org'},
+                    {text: 'Harness-Vue Bootstrap', link: 'https://bootstrap.harnessjs.org'},
                     {text: 'Harness-Vue Starter Template', link: 'https://github.com/RTIInternational/harness-vue-starter-template'}
                 ]
             }
