@@ -9,7 +9,7 @@ hero:
   text: Dashboard state management made easy.
 
   image:
-    src: ./images/Harness-Vue.png
+    src: /Harness-Vue.png
     alt: Harness-Vue Logo
   actions:
     - theme: brand
