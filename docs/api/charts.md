@@ -28,17 +28,6 @@ Returns data for a given chart
 | --- | --- | --- |
 | key | <code>String</code> | a chart key |
 
-<a name="setChartData"></a>
-
-## setChartData(key)
-Sets data for a given chart
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| key | <code>String</code> | a chart key |
-
 <a name="getChartDataActionString"></a>
 
 ## getChartDataActionString(key)
@@ -72,6 +61,17 @@ Validates that data is formatted correctly for the downloadCSV function (an arra
 | --- | --- | --- |
 | data | <code>any</code> | the data to be validated. If null, it will not validate (for lifecyle) |
 | key |  | the key for this data's chart |
+
+<a name="setChartData"></a>
+
+## setChartData(key)
+Sets data for a given chart
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | a chart key |
 
 <a name="generateCSV"></a>
 

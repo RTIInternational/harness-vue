@@ -43,7 +43,7 @@ Applies the value(s) of a harness filter to a column in a given set of data and 
 | filter | <code>String</code> |  | a key representing a harness filter |
 | column | <code>String/Number</code> |  | the column/attribute in the data to apply the filter to |
 | data | <code>Array/String</code> |  | an array of data arrays, or a string representing a chart data key |
-| allKey | <code>String</code> | <code></code> | a string representing a potential value for "all". If this is variable is present in the filter, the filter is not applied |
+| allKey | <code>String</code> | <code></code> | a string representing a potential value for "all". If state is variable is present in the filter, the filter is not applied |
 
 <a name="getMin"></a>
 

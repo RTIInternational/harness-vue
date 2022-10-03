@@ -6,18 +6,6 @@ When using the global mixin for the options API, these will all be mapped to eac
 
 [[toc]]
 
-<a name="setFilter"></a>
-
-## setFilter(key, payload)
-Sets a given filter's value
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| key | <code>String</code> | a filter key |
-| payload | <code>any</code> | a payload to set |
-
 <a name="getFilterActionString"></a>
 
 ## getFilterActionString(key)
@@ -73,19 +61,6 @@ Returns the options array for a given filter
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="setOptionsForFilter"></a>
-
-## setOptionsForFilter(key, payload, setOptionToDefault)
-Sets the options for a given filter to the array provided as payload
-
-**Kind**: global function  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| key | <code>String</code> |  | a filter key |
-| payload | <code>Array</code> |  | a payload to set |
-| setOptionToDefault | <code>Boolean</code> | <code>false</code> | optional variable, if true will set the filter default |
-
 <a name="getLabelForOptionKey"></a>
 
 ## getLabelForOptionKey(filter, key)
@@ -108,6 +83,76 @@ Returns the label for a filter's selected option
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
+
+<a name="getFilterDefault"></a>
+
+## getFilterDefault(key)
+Returns the default option for a given filter
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | a filter key |
+
+<a name="getFilterDefaultLabel"></a>
+
+## getFilterDefaultLabel(key)
+Returns the label for the default option for a given filter
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | a filter key |
+
+<a name="isFilterDirty"></a>
+
+## isFilterDirty(key)
+Returns a boolean indicating whether or not the value of state filter is equal to the value of the default. If true, the filter is no longer set to default.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | a filter key |
+
+<a name="areFiltersDirty"></a>
+
+## areFiltersDirty()
+Returns a boolean indicating whether or not any filters on the page have been set to a value other than their default
+
+**Kind**: global function  
+<a name="getDirtyFilters"></a>
+
+## getDirtyFilters()
+Returns an array of filter keys for dirty filters
+
+**Kind**: global function  
+<a name="setFilter"></a>
+
+## setFilter(key, payload)
+Sets a given filter's value
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | a filter key |
+| payload | <code>any</code> | a payload to set |
+
+<a name="setOptionsForFilter"></a>
+
+## setOptionsForFilter(key, payload, setOptionToDefault)
+Sets the options for a given filter to the array provided as payload
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| key | <code>String</code> |  | a filter key |
+| payload | <code>Array</code> |  | a payload to set |
+| setOptionToDefault | <code>Boolean</code> | <code>false</code> | optional variable, if true will set the filter default |
 
 <a name="setOptionPropertyToBoolean"></a>
 
@@ -171,48 +216,3 @@ Set hidden property to false for given options
 | filter | <code>String</code> | a filter key |
 | optionKeys | <code>Array</code> | an array of optionKeys |
 
-<a name="getFilterDefault"></a>
-
-## getFilterDefault(key)
-Returns the default option for a given filter
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| key | <code>String</code> | a filter key |
-
-<a name="getFilterDefaultLabel"></a>
-
-## getFilterDefaultLabel(key)
-Returns the label for the default option for a given filter
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| key | <code>String</code> | a filter key |
-
-<a name="isFilterDirty"></a>
-
-## isFilterDirty(key)
-Returns a boolean indicating whether or not the value of this filter is equal to the value of the default. If true, the filter is no longer set to default.
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| key | <code>String</code> | a filter key |
-
-<a name="areFiltersDirty"></a>
-
-## areFiltersDirty()
-Returns a boolean indicating whether or not any filters on the page have been set to a value other than their default
-
-**Kind**: global function  
-<a name="getDirtyFilters"></a>
-
-## getDirtyFilters()
-Returns an array of filter keys for dirty filters
-
-**Kind**: global function  
