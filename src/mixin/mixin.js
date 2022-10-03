@@ -1,11 +1,13 @@
 import getActions from "../store/actions";
 import getState from "../store/state";
 import getValidationFunctions from "../store/validation";
-import getFilterHelperFunctions from "../store/filters";
-import getChartHelperFunctions from "../store/charts";
+import getGetters from "../store/getters";
 import getDataHelperFunctions from "../store/data";
+import { getFilterActions, getFilterGetters } from "../store/filters";
+import { getChartActions, getChartGetters } from "../store/charts";
+// import getDataHelperFunctions from "../store/data";
 import harnessStore from "../store/harnessStore";
-import { mapActions, mapState, mapGetters } from "pinia";
+import { mapActions, mapState } from "pinia";
 
 export default function mixin(pinia) {
   return {
@@ -38,13 +40,18 @@ export default function mixin(pinia) {
         // const pageStore = pageFunc();
         const pageDefinition = harnessMetadata.getpageDefinitions[waypoint];
         //   const pageDefinition = { key: "foo" };
-        const state = getAttributeNames(getState(pageDefinition));
+        const stateAndGetters = getAttributeNames({
+          ...getState(pageDefinition),
+          ...getGetters(pageDefinition),
+          ...getFilterGetters(),
+          ...getChartGetters(),
+          ...getDataHelperFunctions(),
+          ...getValidationFunctions(),
+        });
         const actions = getAttributeNames({
           ...getActions(pageDefinition),
-          ...getValidationFunctions(),
-          ...getFilterHelperFunctions(),
-          ...getChartHelperFunctions(),
-          ...getDataHelperFunctions(),
+          ...getFilterActions(),
+          ...getChartActions(),
         });
         this.$options.methods = {
           ...this.$options.methods,
@@ -52,8 +59,7 @@ export default function mixin(pinia) {
         };
         this.$options.computed = {
           ...this.$options.computed,
-          ...mapState(pageFunc, state),
-          ...mapGetters(pageFunc, state),
+          ...mapState(pageFunc, stateAndGetters),
           pageStore() {
             return pageFunc(pinia);
           },

@@ -1,16 +1,18 @@
 import { capitalize } from "./utils";
 import { saveAs } from "file-saver";
 
-export default function getChartHelperFunctions() {
+export function getChartGetters() {
   return {
     /**
      * Returns the chart object for a given key
      *
      * @param  {String} key a chart key
      */
-    getChartDefinition(key) {
-      this._validChartKey(key);
-      return this.charts[key];
+    getChartDefinition(state) {
+      return (key) => {
+        state._validChartKey(key);
+        return state.charts[key];
+      };
     },
 
     /**
@@ -18,19 +20,11 @@ export default function getChartHelperFunctions() {
      *
      * @param  {String} key a chart key
      */
-    getChartData(key) {
-      this._validChartKey(key);
-      return this[`get${capitalize(key)}ChartData`];
-    },
-
-    /**
-     * Sets data for a given chart
-     *
-     * @param  {String} key a chart key
-     */
-    setChartData(key, payload) {
-      this._validChartKey(key);
-      this[`set${capitalize(key)}ChartData`](payload);
+    getChartData(state) {
+      return (key) => {
+        state._validChartKey(key);
+        return state[`get${capitalize(key)}ChartData`];
+      };
     },
 
     /**
@@ -38,9 +32,11 @@ export default function getChartHelperFunctions() {
      *
      * @param  {String} key a chart key
      */
-    getChartDataActionString(key) {
-      this._validChartKey(key);
-      return `set${capitalize(key)}ChartData`;
+    getChartDataActionString(state) {
+      return (key) => {
+        state._validChartKey(key);
+        return `set${capitalize(key)}ChartData`;
+      };
     },
 
     /**
@@ -48,9 +44,11 @@ export default function getChartHelperFunctions() {
      *
      * @param  {String} key a chart key
      */
-    getChartProps(key) {
-      this._validChartKey(key);
-      return this.charts[key].props;
+    getChartProps(state) {
+      return (key) => {
+        state._validChartKey(key);
+        return state.charts[key].props;
+      };
     },
 
     /**
@@ -59,35 +57,51 @@ export default function getChartHelperFunctions() {
      * @param  {any} data the data to be validated. If null, it will not validate (for lifecyle)
      * @param  {} key the key for this data's chart
      */
-    validateChartData(data, key) {
-      this._validChartKey(key);
-      if (data) {
-        if (!Array.isArray(data)) {
-          let msg = "The processed data for " + key + " is not an array.";
-          if (!this.getChartProps(key).tableAdapter) {
-            msg +=
-              " Please add a tableAdapter function to your chart that processes it for tabular representation.";
-          }
-          throw String(msg);
-        }
-        if (data.length < 1) {
-          throw String("The processed data for " + key + " has no content.");
-        }
-        data.forEach((row) => {
-          if (typeof row !== "object") {
-            let msg =
-              "The processed data for " +
-              key +
-              " contains non-object elements.";
-            if (!this.getChartProps(key).tableAdapter) {
+    validateChartData(state) {
+      return (data, key) => {
+        state._validChartKey(key);
+        if (data) {
+          if (!Array.isArray(data)) {
+            let msg = "The processed data for " + key + " is not an array.";
+            if (!state.getChartProps(key).tableAdapter) {
               msg +=
                 " Please add a tableAdapter function to your chart that processes it for tabular representation.";
             }
             throw String(msg);
           }
-        });
-      }
-      return data;
+          if (data.length < 1) {
+            throw String("The processed data for " + key + " has no content.");
+          }
+          data.forEach((row) => {
+            if (typeof row !== "object") {
+              let msg =
+                "The processed data for " +
+                key +
+                " contains non-object elements.";
+              if (!state.getChartProps(key).tableAdapter) {
+                msg +=
+                  " Please add a tableAdapter function to your chart that processes it for tabular representation.";
+              }
+              throw String(msg);
+            }
+          });
+        }
+        return data;
+      };
+    },
+  };
+}
+
+export function getChartActions() {
+  return {
+    /**
+     * Sets data for a given chart
+     *
+     * @param  {String} key a chart key
+     */
+    setChartData(key, payload) {
+      this._validChartKey(key);
+      this[`set${capitalize(key)}ChartData`](payload);
     },
 
     /**
