@@ -97,7 +97,7 @@ Component Example:
 </script>
 ```
 
-## Composable
+### Composable
 For the composition API, Harness-Vue publishes a composable that follows the logic defined above to determine the page and returns the appropriate pinia store for you to use. 
 
 Component example:
