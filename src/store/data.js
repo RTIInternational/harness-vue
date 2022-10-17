@@ -15,27 +15,29 @@ export default function getDataHelperFunctions() {
       };
     },
     /**
-     * Returns an array of distinct values from an array of arrays or objects by index. If values are strings or numbers they will be sorted, and if an optional array of values is provided as a map it will be used to sort.
+     * Returns an array of distinct values from an array of arrays or objects by index. If values are strings or numbers they will be sorted, and if an optional array of values is provided as a map it will be used to sort. Sorting can be disabled by setting <code>sort = false</code>.
      *
      * @param  {Array/String} data an array of data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the key to use for either the object attribute or array column you are trying to get distinct values for
      * @param  {Array} map=null an array of values to use as an ordering map in sort
+     * @param  {Boolean} sort=true boolean to check whether to sort the returning distinct values
      */
     getDistinctValues(state) {
-      return (data, idx = null, map = null) => {
+      return (data, idx = null, map = null, sort = true) => {
         data = state._validateData(data);
         // extract distinct values
         if (idx) {
           data = state.getValues(data, idx);
         }
-        return data
+        data = data
           .reduce((acc, datum) => {
             if (!acc.includes(datum)) {
               acc.push(datum);
             }
             return acc;
           }, [])
-          .sort((a, b) => {
+        return sort ? 
+          data.sort((a, b) => {
             if (map) {
               // sort by map
               return map.indexOf(a) - map.indexOf(b);
@@ -43,7 +45,7 @@ export default function getDataHelperFunctions() {
               // sort strings
               return a.localeCompare(b, "en", { sensitivity: "base" });
             }
-          });
+          }) : data;
       };
     },
     /**
