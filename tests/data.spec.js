@@ -29,6 +29,7 @@ describe("DV Data Helpers", () => {
     "1.01",
     new Date(),
   ];
+  let outOfOrderArrayFlat = [4, 1, 3, 1, 2, 4]
   it("Can Validate Data", () => {
     let hs = mockHs();
 
@@ -110,6 +111,24 @@ describe("DV Data Helpers", () => {
     // test subset map
     let bigMap = [...map, "five", "six"];
     expect(hs.getDistinctValues(dataArray, "test", bigMap)).toEqual(map);
+  });
+
+  it("Can Get Distinct Unsorted Values From Data", () => {
+    let hs = mockHs();
+    // test strings
+    expect(hs.getDistinctValues(dataArray, "test", null, false)).toEqual([
+      "one",
+      "two",
+      "three",
+      "four",
+    ]);
+
+    // test flat
+    expect(hs.getDistinctValues(dataArrayFlat)).toEqual([1, 2, 3, 4]);
+    // test out of order flat
+    expect(hs.getDistinctValues(outOfOrderArrayFlat)).toEqual([4, 1, 3, 2]);
+    // test nums
+    expect(hs.getDistinctValues(dataArrayNum, "test")).toEqual([1, 2, 3, 4]);
   });
 
   it("Can Apply Filter To Column", () => {

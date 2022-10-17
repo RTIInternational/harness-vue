@@ -20,8 +20,8 @@ Returns all values in a given data key/attribute, unsorted
 
 <a name="getDistinctValues"></a>
 
-## getDistinctValues(data, idx, map)
-Returns an array of distinct values from an array of arrays or objects by index. If values are strings or numbers they will be sorted, and if an optional array of values is provided as a map it will be used to sort.
+## getDistinctValues(data, idx, map, sort)
+Returns an array of distinct values from an array of arrays or objects by index. If values are strings or numbers they will be sorted, and if an optional array of values is provided as a map it will be used to sort. Sorting can be disabled by setting <code>sort = false</code>.
 
 **Kind**: global function  
 
@@ -30,6 +30,7 @@ Returns an array of distinct values from an array of arrays or objects by index.
 | data | <code>Array/String</code> |  | an array of data arrays, or a string representing a chart data key |
 | idx | <code>String/Number</code> | <code></code> | the key to use for either the object attribute or array column you are trying to get distinct values for |
 | map | <code>Array</code> | <code></code> | an array of values to use as an ordering map in sort |
+| sort | <code>Boolean</code> | <code>true</code> | boolean to check whether to sort the returning distinct values |
 
 <a name="applyFilterToColumn"></a>
 
