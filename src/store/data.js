@@ -15,7 +15,7 @@ export default function getDataHelperFunctions() {
       };
     },
     /**
-     * Returns an array of distinct values from an array of arrays or objects by index. If values are strings or numbers they will be sorted, and if an optional array of values is provided as a map it will be used to sort.
+     * Returns an array of distinct values from an array of arrays or objects by index. If values are strings or numbers they will be sorted, and if an optional array of values is provided as a map it will be used to sort. Sorting can be disabled by setting <code>sort = false</code>.
      *
      * @param  {Array/String} data an array of data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the key to use for either the object attribute or array column you are trying to get distinct values for
