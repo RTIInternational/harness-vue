@@ -110,14 +110,14 @@ Component example:
 
 <script setup>
 import { defineProps } from "vue";
-import { harnessComposable } from "@rtidatascience/harness-vue";
+import { useHarnessComposable } from "@rtidatascience/harness-vue";
 defineProps({
   chart: {
     type: Object,
     required: true,
   },
 });
-const harness = harnessComposable();
+const harness = useHarnessComposable();
 </script>
 
 ```

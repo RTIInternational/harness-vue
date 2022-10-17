@@ -2,7 +2,7 @@
 import { getCurrentInstance } from "vue";
 import { useHarnessStore } from "../harness";
 
-export default function harnessComposable() {
+export default function useHarnessComposable() {
   const harnessMetadata = useHarnessStore();
   const vueInstance = getCurrentInstance();
 
