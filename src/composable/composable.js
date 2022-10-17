@@ -1,9 +1,9 @@
 // https://stackoverflow.com/questions/72209080/vue-3-is-getcurrentinstance-deprecated
 import { getCurrentInstance } from "vue";
-import { harnessStore } from "../harness";
+import { useHarnessStore } from "../harness";
 
 export default function harnessComposable() {
-  const harnessMetadata = harnessStore();
+  const harnessMetadata = useHarnessStore();
   const vueInstance = getCurrentInstance();
 
   let waypoint = false;

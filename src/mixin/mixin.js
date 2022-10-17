@@ -6,7 +6,7 @@ import getDataHelperFunctions from "../store/data";
 import { getFilterActions, getFilterGetters } from "../store/filters";
 import { getChartActions, getChartGetters } from "../store/charts";
 // import getDataHelperFunctions from "../store/data";
-import harnessStore from "../store/harnessStore";
+import useHarnessStore from "../store/harnessStore";
 import { mapActions, mapState } from "pinia";
 
 export default function mixin(pinia) {
@@ -15,7 +15,7 @@ export default function mixin(pinia) {
       // if route name is a valid harness page, use it as waypoint
       let waypoint = false;
 
-      const harnessMetadata = harnessStore(pinia);
+      const harnessMetadata = useHarnessStore(pinia);
 
       if (
         this.$route &&

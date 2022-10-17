@@ -1,5 +1,5 @@
 import { capitalize } from "./utils";
-import metadataStore from "./harnessStore";
+import useHarnessStore from "./harnessStore";
 import getDefaultOption from "./defaultOption";
 export default function getActions(pageDefinition) {
   const actions = {
@@ -15,7 +15,7 @@ export default function getActions(pageDefinition) {
           "loadData function is missing in page file. loadData must exist to use LOAD_DATA action"
         );
       }
-      const harnessStore = metadataStore();
+      const harnessStore = useHarnessStore();
       const pageStore = harnessStore.getPageStores[pageDefinition.key]();
       const data = await pageDefinition
         .loadData(pageDefinition, pageStore)

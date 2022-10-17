@@ -1,5 +1,5 @@
 import pages from "./validation/pages";
-import harnessStore from "./store/harnessStore";
+import useHarnessStore from "./store/harnessStore";
 import createHarnessStore from "./store/createHarnessStore";
 import createHarnessRoute from "./router/route.js";
 import harnessMixin from "./mixin/mixin.js";
@@ -7,7 +7,7 @@ import harnessComposable from "./composable/composable";
 const harnessPlugin = {
   install: (app, options) => {
     // create harness metadata store in pinia
-    const harness = harnessStore(options.pinia);
+    const harness = useHarnessStore(options.pinia);
 
     // validate page files
     const validatedPages = pages(options.pages);
@@ -31,4 +31,4 @@ const harnessPlugin = {
   },
 };
 
-export { harnessPlugin, harnessMixin, harnessStore, harnessComposable };
+export { harnessPlugin, harnessMixin, useHarnessStore, harnessComposable };

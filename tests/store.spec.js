@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import pages from "./mocks/pages/manifest";
-import { harnessStore } from "../src/harness";
+import { useHarnessStore } from "../src/harness";
 import createHarnessStore from "../src/store/createHarnessStore";
 import { createPinia } from "pinia";
 
@@ -9,7 +9,7 @@ const page = new pages[0]();
 
 function mockHs() {
   const pinia = createPinia();
-  const harness = harnessStore(pinia);
+  const harness = useHarnessStore(pinia);
   const pageFunc = createHarnessStore(page, pinia);
   const pageStore = pageFunc(pinia);
   harness.addStore(page.key, page, pageFunc);
