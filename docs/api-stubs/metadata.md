@@ -18,5 +18,5 @@ These functions can be useful for things such as navigation or other tasks that 
 To access the store, import from the main library:
 
 ```js
-import { harnessStore } from "@rtidatascience/harness-vue"
+import { useHarnessStore } from "@rtidatascience/harness-vue"
 ```
