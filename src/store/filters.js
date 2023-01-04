@@ -194,7 +194,7 @@ export function getFilterActions() {
     },
 
     /**
-     * Sets a given filter's value
+     * Sets a given filter's label
      *
      * @param  {String} key a filter key
      * @param  {any} payload a payload to set
