@@ -194,6 +194,17 @@ export function getFilterActions() {
     },
 
     /**
+     * Sets a given filter's label
+     *
+     * @param  {String} key a filter key
+     * @param  {any} payload a payload to set
+     */
+    setFilterLabel(key, payload) {
+      this._validFilterKey(key);
+      this.filters[key].label = payload;
+    },
+
+    /**
      * Sets the options for a given filter to the array provided as payload
      *
      * @param  {String} key a filter key

@@ -22,6 +22,11 @@ export default defineConfig({
         },
       },
     },
+    test: {
+      coverage: {
+        reporter: ["json", "text-summary"],
+      },
+    },
   },
   plugins: [vue()],
 });
