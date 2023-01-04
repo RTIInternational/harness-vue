@@ -31,6 +31,13 @@ describe("DV Filter functions", () => {
       expect(hs.getFilter(filterKey)).toEqual("Testing set filter");
     });
   });
+  it("Can Set Filter Label", () => {
+    let hs = mockHs();
+    Object.keys(page.filters()).forEach((filterKey) => {
+      hs.setFilterLabel(filterKey, "changedLabel");
+      expect(hs.getLabel(filterKey)).toEqual("changedLabel");
+    });
+  });
   it("Can Get Filter Action String", () => {
     let hs = mockHs();
     Object.keys(page.filters()).forEach((filterKey) => {
