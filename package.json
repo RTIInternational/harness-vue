@@ -2,7 +2,7 @@
   "name": "@rtidatascience/harness-vue",
   "author": "RTI CDS <alexharding@rti.org>",
   "private": false,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "repository": {
     "type": "git",
