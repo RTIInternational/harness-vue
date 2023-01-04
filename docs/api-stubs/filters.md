@@ -1,4 +1,4 @@
-# Charts
+# Filters
 
 The following API functions allow developers to interact with filters. These functions are all mapped to the pinia store created for a given page, so they are available in a number of ways.
 
