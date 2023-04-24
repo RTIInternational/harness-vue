@@ -1,97 +1,109 @@
 # Charts
 
-The following API functions allow developers to interact with charts. These functions are all mapped to the pinia store created for a given page, so they are available in a number of ways.
-
-When using the global mixin for the options API, these will all be mapped to each component and available as `this.<function>`. In the `loadData` context, these will be available on the `pageStore` provided by the function.
+The following API functions allow developers to interact with charts. For more information on how to use these functions, see the [API usage page](/api/usage).
 
 [[toc]]
 
-<a name="getChartDefinition"></a>
+<a name="module_pageStore"></a>
 
-## getChartDefinition(key)
+## pageStore
+
+* [pageStore](#module_pageStore)
+    * [.getChartDefinition(key)](#module_pageStore.getChartDefinition)
+    * [.getChartData(key)](#module_pageStore.getChartData)
+    * [.getChartDataActionString(key)](#module_pageStore.getChartDataActionString)
+    * [.getChartProps(key)](#module_pageStore.getChartProps)
+    * [.validateChartData(data, key)](#module_pageStore.validateChartData)
+    * [.setChartData(key)](#module_pageStore.setChartData)
+    * [.generateCSV(key, returnFormat)](#module_pageStore.generateCSV)
+    * [.downloadCSV(key)](#module_pageStore.downloadCSV)
+
+<a name="module_pageStore.getChartDefinition"></a>
+
+### pageStore.getChartDefinition(key)
 Returns the chart object for a given key
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a chart key |
 
-<a name="getChartData"></a>
+<a name="module_pageStore.getChartData"></a>
 
-## getChartData(key)
+### pageStore.getChartData(key)
 Returns data for a given chart
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a chart key |
 
-<a name="getChartDataActionString"></a>
+<a name="module_pageStore.getChartDataActionString"></a>
 
-## getChartDataActionString(key)
+### pageStore.getChartDataActionString(key)
 Returns the full action string for a given chart. Useful for checking in subscriptions
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a chart key |
 
-<a name="getChartProps"></a>
+<a name="module_pageStore.getChartProps"></a>
 
-## getChartProps(key)
+### pageStore.getChartProps(key)
 Returns the props for a given chart if they exist
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a chart key |
 
-<a name="validateChartData"></a>
+<a name="module_pageStore.validateChartData"></a>
 
-## validateChartData(data, key)
+### pageStore.validateChartData(data, key)
 Validates that data is formatted correctly for the downloadCSV function (an array of objects)
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | data | <code>any</code> | the data to be validated. If null, it will not validate (for lifecyle) |
 | key |  | the key for this data's chart |
 
-<a name="setChartData"></a>
+<a name="module_pageStore.setChartData"></a>
 
-## setChartData(key)
+### pageStore.setChartData(key)
 Sets data for a given chart
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a chart key |
 
-<a name="generateCSV"></a>
+<a name="module_pageStore.generateCSV"></a>
 
-## generateCSV(key, returnFormat)
+### pageStore.generateCSV(key, returnFormat)
 Generates a csv of a given table, optionally formatted through a chart's tableAdapter prop
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a chart key |
 | returnFormat | <code>String</code> | format to generate the CSV in |
 
-<a name="downloadCSV"></a>
+<a name="module_pageStore.downloadCSV"></a>
 
-## downloadCSV(key)
+### pageStore.downloadCSV(key)
 Downloads a csv of a given table, optionally formatted through a chart's tableAdapter prop.
 If a chartTitle prop exists, the csv will be generated using that as the file name
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |

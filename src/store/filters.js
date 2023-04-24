@@ -1,12 +1,15 @@
 import { capitalize } from "./utils";
 import getDefaultOption from "./defaultOption";
 
+/**
+ * @module pageStore
+ */
 export function getFilterGetters() {
   return {
     /**
      * Returns the value for a given filter
      * @param  {String} key a filter key
-     * @memberof module:Filters
+     * @memberof module:pageStore
      */
     getFilter(state) {
       return (key) => {
@@ -18,6 +21,7 @@ export function getFilterGetters() {
      * Returns the full action string for a given filter. Useful for checking in subscriptions
      *
      * @param  {String} key a filter key
+     * @memberof module:pageStore
      */
     getFilterActionString(state) {
       return (key) => {
@@ -30,6 +34,7 @@ export function getFilterGetters() {
      * Returns the filter object for a given filter key
      *
      * @param  {String} key a filter key
+     * @memberof module:pageStore
      */
     getFilterDefinition(state) {
       return (key) => {
@@ -42,6 +47,7 @@ export function getFilterGetters() {
      * returns the props for a given filter, if they exist
      *
      * @param  {String} key a filter key
+     * @memberof module:pageStore
      */
     getFilterProps(state) {
       return (key) => {
@@ -54,6 +60,7 @@ export function getFilterGetters() {
      * Returns the label for a given filter
      *
      * @param  {String} key a filter key
+     * @memberof module:pageStore
      */
     getLabel(state) {
       return (key) => {
@@ -66,6 +73,7 @@ export function getFilterGetters() {
      * Returns the options array for a given filter
      *
      * @param  {String} key a filter key
+     * @memberof module:pageStore
      */
     getOptionsForFilter(state) {
       return (key) => {
@@ -79,6 +87,7 @@ export function getFilterGetters() {
      *
      * @param  {String} filter a filter key
      * @param  {String} key an option key for an option included in the filter
+     * @memberof module:pageStore
      */
     getLabelForOptionKey(state) {
       return (filter, key) => {
@@ -95,6 +104,7 @@ export function getFilterGetters() {
      * Returns the label for a filter's selected option
      *
      * @param  {String} key a filter key
+     * @memberof module:pageStore
      */
     getLabelForSelectedOption(state) {
       return (key) => {
@@ -106,6 +116,7 @@ export function getFilterGetters() {
      * Returns the default option for a given filter
      *
      * @param  {String} key a filter key
+     * @memberof module:pageStore
      */
     getFilterDefault(state) {
       return (key) => {
@@ -120,6 +131,7 @@ export function getFilterGetters() {
      * Returns the label for the default option for a given filter
      *
      * @param  {String} key a filter key
+     * @memberof module:pageStore
      */
     getFilterDefaultLabel(state) {
       (key) => {
@@ -135,6 +147,7 @@ export function getFilterGetters() {
      * Returns a boolean indicating whether or not the value of state filter is equal to the value of the default. If true, the filter is no longer set to default.
      *
      * @param  {String} key a filter key
+     * @memberof module:pageStore
      */
     isFilterDirty(state) {
       return (key) => {
@@ -149,6 +162,7 @@ export function getFilterGetters() {
     /**
      * Returns a boolean indicating whether or not any filters on the page have been set to a value other than their default
      *
+     * @memberof module:pageStore
      */
     areFiltersDirty(state) {
       return () => {
@@ -167,6 +181,7 @@ export function getFilterGetters() {
     /**
      * Returns an array of filter keys for dirty filters
      *
+     * @memberof module:pageStore
      */
     getDirtyFilters(state) {
       return () => {
@@ -187,6 +202,7 @@ export function getFilterActions() {
      *
      * @param  {String} key a filter key
      * @param  {any} payload a payload to set
+     * @memberof module:pageStore
      */
     setFilter(key, payload) {
       this._validFilterKey(key);
@@ -198,6 +214,7 @@ export function getFilterActions() {
      *
      * @param  {String} key a filter key
      * @param  {any} payload a payload to set
+     * @memberof module:pageStore
      */
     setFilterLabel(key, payload) {
       this._validFilterKey(key);
@@ -210,6 +227,7 @@ export function getFilterActions() {
      * @param  {String} key a filter key
      * @param  {Array} payload a payload to set
      * @param  {Boolean} setOptionToDefault=false optional variable, if true will set the filter default
+     * @memberof module:pageStore
      */
     setOptionsForFilter(key, payload, setDefaultOption = false) {
       this._validFilterKey(key);
@@ -227,6 +245,7 @@ export function getFilterActions() {
      * @param  {Array} optionKeysToSet an array of optionKeys
      * @param  {String} property the name of the property
      * @param  {Boolean} bool the boolean value to apply to the property
+     * @memberof module:pageStore
      */
     setOptionPropertyToBoolean(filter, optionKeysToSet, property, bool) {
       this._validFilterKey(filter);
@@ -246,6 +265,7 @@ export function getFilterActions() {
      *
      * @param  {String} filter a filter key
      * @param  {Array} optionKeys an array of optionKeys
+     * @memberof module:pageStore
      */
     disableOptions(filter, optionKeys) {
       this._validFilterKey(filter);
@@ -257,6 +277,7 @@ export function getFilterActions() {
      *
      * @param  {String} filter a filter key
      * @param  {Array} optionKeys an array of optionKeys
+     * @memberof module:pageStore
      */
     enableOptions(filter, optionKeys) {
       this._validFilterKey(filter);
@@ -268,6 +289,7 @@ export function getFilterActions() {
      *
      * @param  {String} filter a filter key
      * @param  {Array} optionKeys an array of optionKeys
+     * @memberof module:pageStore
      */
     hideOptions(filter, optionKeys) {
       this._validFilterKey(filter);
@@ -279,6 +301,7 @@ export function getFilterActions() {
      *
      * @param  {String} filter a filter key
      * @param  {Array} optionKeys an array of optionKeys
+     * @memberof module:pageStore
      */
     showOptions(filter, optionKeys) {
       this._validFilterKey(filter);

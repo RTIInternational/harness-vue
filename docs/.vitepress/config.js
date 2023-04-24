@@ -25,10 +25,13 @@ export default {
                 text: 'API',
                 collapsible: true,
                 items: [
-                    {text: 'Harness-Vue Metadata', link: '/api/metadata'},
+                    {text: 'Usage', link: '/api/usage'},
+                    {text: 'Getters', link: '/api/getters'},
+                    { text: 'Lifecycle', link: '/api/lifecycle' },
                     {text: 'Charts', link: '/api/charts'},
                     {text: 'Filters', link: '/api/filters'},
-                    {text: 'Data and Statistics Helpers', link: '/api/data'}
+                    {text: 'Data and Statistics Helpers', link: '/api/data'},
+                    {text: 'Pages Metadata', link: '/api/metadata'},
                 ]
             },
             {
@@ -55,9 +58,13 @@ export default {
         nav: [
             { text: 'Guide', link: '/introduction/' },
             { text: 'API', items: [
-                { text: 'Charts', link: '/api/charts' },
-                { text: 'Filters', link: '/api/filters' },
-                { text: 'Data and Statistics', link: '/api/data' },
+                {text: 'Usage', link: '/api/usage'},
+                {text: 'Getters', link: '/api/getters'},
+                { text: 'Lifecycle', link: '/api/lifecycle' },
+                {text: 'Charts', link: '/api/charts'},
+                {text: 'Filters', link: '/api/filters'},
+                {text: 'Data and Statistics Helpers', link: '/api/data'},
+                {text: 'Pages Metadata', link: '/api/metadata'},
 
             ]}
         ],

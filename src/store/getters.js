@@ -1,29 +1,60 @@
 import { capitalize } from "./utils";
 
+/**
+ * @module pageStore
+ */
 export default function getGetters(pageDefinition) {
   // add initial getter for raw data
   const getters = {
+    /**
+     * Gets the contents of the request cache for a given page
+     * @memberof module:pageStore
+     */
     getRequestCache(state) {
       return state.requestCache;
     },
     getPage(state) {
       return state.page;
     },
+    /**
+     * Gets the page definition for a given page
+     * @memberof module:pageStore
+     */
     getPageDefinition(state) {
       return state.pageDefinition;
     },
+    /**
+     * Gets the filter definitions for a given page
+     * @memberof module:pageStore
+     */
     getFilters(state) {
       return state.filters;
     },
+    /**
+     * Gets the filter keys for a given page
+     * @memberof module:pageStore
+     */
     getFilterKeys(state) {
       return Object.keys(state.filters);
     },
+    /**
+     * Gets the chart definitions for a given page
+     * @memberof module:pageStore
+     */
     getCharts(state) {
       return state.charts;
     },
+    /**
+     * Gets the chart keys for a given page
+     * @memberof module:pageStore
+     */
     getChartKeys(state) {
       return Object.keys(state.charts);
     },
+    /**
+     * Gets the data loading boolean (toggled by loadData) for a given page
+     * @memberof module:pageStore
+     */
     getDataLoading(state) {
       return state.dataLoading;
     },

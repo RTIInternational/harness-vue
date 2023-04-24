@@ -1,9 +1,14 @@
+/**
+ * @module pageStore
+ */
 export default function getDataHelperFunctions() {
   return {
     /**
      * Returns all values in a given data key/attribute, unsorted
+     *
      * @param  {Array/String} data an array of data arrays, or a string representing a chart data key
      * @param  {} idx the key to use for either the object attribute or array column you are trying to get values for
+     * @memberof module:pageStore
      */
     getValues(state) {
       return (data, idx) => {
@@ -21,6 +26,7 @@ export default function getDataHelperFunctions() {
      * @param  {String/Number} idx=null the key to use for either the object attribute or array column you are trying to get distinct values for
      * @param  {Array} map=null an array of values to use as an ordering map in sort
      * @param  {Boolean} sort=true boolean to check whether to sort the returning distinct values
+     * @memberof module:pageStore
      */
     getDistinctValues(state) {
       return (data, idx = null, map = null, sort = true) => {
@@ -29,31 +35,33 @@ export default function getDataHelperFunctions() {
         if (idx) {
           data = state.getValues(data, idx);
         }
-        data = data
-          .reduce((acc, datum) => {
-            if (!acc.includes(datum)) {
-              acc.push(datum);
-            }
-            return acc;
-          }, [])
-        return sort ? 
-          data.sort((a, b) => {
-            if (map) {
-              // sort by map
-              return map.indexOf(a) - map.indexOf(b);
-            } else if (typeof a === "string" && typeof b === "string") {
-              // sort strings
-              return a.localeCompare(b, "en", { sensitivity: "base" });
-            }
-          }) : data;
+        data = data.reduce((acc, datum) => {
+          if (!acc.includes(datum)) {
+            acc.push(datum);
+          }
+          return acc;
+        }, []);
+        return sort
+          ? data.sort((a, b) => {
+              if (map) {
+                // sort by map
+                return map.indexOf(a) - map.indexOf(b);
+              } else if (typeof a === "string" && typeof b === "string") {
+                // sort strings
+                return a.localeCompare(b, "en", { sensitivity: "base" });
+              }
+            })
+          : data;
       };
     },
     /**
      * Applies the value(s) of a harness filter to a column in a given set of data and returns the filtered result
+     *
      * @param  {String} filter a key representing a harness filter
      * @param  {String/Number} column the column/attribute in the data to apply the filter to
      * @param  {Array/String} data an array of data arrays, or a string representing a chart data key
      * @param  {String} allKey=null a string representing a potential value for "all". If state is variable is present in the filter, the filter is not applied
+     * @memberof module:pageStore
      */
     applyFilterToColumn(state) {
       return (filter, column, data, allKey = null) => {
@@ -84,8 +92,10 @@ export default function getDataHelperFunctions() {
     },
     /**
      * Gets the minimum value from an array of data. If an index is supplied, gets the minimum for that index/attribute in the data. Only includes valid numbers in calculations.
+     *
      * @param  {Array/String} data an array of data/data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the optional index/attribute in the data to apply the filter to
+     * @memberof module:pageStore
      */
     getMin(state) {
       return (data, idx = null) => {
@@ -96,8 +106,10 @@ export default function getDataHelperFunctions() {
 
     /**
      * Gets the maximum value from an array of data. If an index is supplied, gets the maximum for that index/attribute in the data.  Only includes valid numbers in calculations.
+     *
      * @param  {Array/String} data an array of data/data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the optional index/attribute in the data to apply the filter to
+     * @memberof module:pageStore
      */
     getMax(state) {
       return (data, idx = null) => {
@@ -108,8 +120,10 @@ export default function getDataHelperFunctions() {
 
     /**
      * Gets the median of an array of data
+     *
      * @param  {Array/String} data an array of data/data arrays, or a string representing a chart data key.  Only includes valid numbers in calculations.
      * @param  {String/Number} idx=null the optional index/attribute in the data to apply the filter to
+     * @memberof module:pageStore
      */
     getMedian(state) {
       return (data, idx = null) => {
@@ -123,8 +137,10 @@ export default function getDataHelperFunctions() {
 
     /**
      * Gets the sum for an array of data.  Only includes valid numbers in calculations.
+     *
      * @param  {Array/String} data an array of data/data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the optional index/attribute in the data to apply the filter to
+     * @memberof module:pageStore
      */
     getSum(state) {
       return (data, idx = null) => {
@@ -135,8 +151,10 @@ export default function getDataHelperFunctions() {
 
     /**
      * Gets the mean for an array of data.  Only includes valid numbers in calculations.
+     *
      * @param  {Array/String} data an array of data/data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the optional index/attribute in the data to apply the filter to
+     * @memberof module:pageStore
      */
     getMean(state) {
       return (data, idx = null) => {
@@ -147,8 +165,10 @@ export default function getDataHelperFunctions() {
 
     /**
      * Gets the geometric mean for an array of data.  Only includes valid numbers in calculations.
+     *
      * @param  {Array/String} data an array of data/data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the optional index/attribute in the data to apply the filter to
+     * @memberof module:pageStore
      */
     getGeometricMean(state) {
       return (data, idx = null) => {
@@ -179,8 +199,10 @@ export default function getDataHelperFunctions() {
 
     /**
      * Gets quartiles for an array of data. Returns in format {minimum, lowerQuartile, median, upperQuartile, maximum, IQR}.  Only includes valid numbers in calculations.
+     *
      * @param  {Array/String} data an array of data/data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the optional index/attribute in the data to apply the filter to
+     * @memberof module:pageStore
      */
     getQuartiles(state) {
       return (data, idx = null) => {
@@ -211,8 +233,10 @@ export default function getDataHelperFunctions() {
     /**
      * Returns truncated dataset with outliers for a given array of data. Outliers are identified as any values that equal or lower than the lower quartile - (1.5 x IQR) or
      * equal to or higher than the upper quartile + (1.5 x IQR).
+     *
      * @param  {Array/String} data an array of data/data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the optional index/attribute in the data to apply the filter to
+     * @memberof module:pageStore
      */
     getOutliers(state) {
       return (data, idx = null) => {
@@ -248,8 +272,10 @@ export default function getDataHelperFunctions() {
     /**
      * Returns truncated dataset minus outliers for a given array of data. Outliers are identified as any values that equal or lower than the lower quartile - (1.5 x IQR) or
      * equal to or higher than the upper quartile + (1.5 x IQR).
+     *
      * @param  {Array/String} data an array of data/data arrays, or a string representing a chart data key
      * @param  {String/Number} idx=null the optional index/attribute in the data to apply the filter to
+     * @memberof module:pageStore
      */
     removeOutliers(state) {
       return (data, idx = null) => {

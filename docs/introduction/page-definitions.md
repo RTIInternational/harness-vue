@@ -10,7 +10,7 @@ A page definition is a Javascript class that includes the following attributes a
 * `pageComponent` (Optional, Vue Component): If used with Vue Router, this attribute should include a Vue component to be rendered by Vue Router [via the `<router-view>` syntax](https://router.vuejs.org/guide/).
 * `pageProps` (Optional, `Object`): An optional object to be passed to the page component as props.
 
-```js
+```javascript
 import pageComponent from "@/components/pages/examplePage"
 export default class ExamplePage {
     title = "Example Page";
@@ -28,7 +28,7 @@ The page definition should have a `charts` function that returns the chart defin
 * `props` (`Object`): props meant to be mapped to the component once rendered.
 * `beforeSet` and `afterSet` functions: these functions will accept two arguments `(action, store)` and be run in the before/after hooks for the setter actions provided by Harness-Vue using [Pinia's action subscriptions](https://pinia.vuejs.org/core-concepts/actions.html#subscribing-to-actions) The `action` argument will be an object with the name/args of the action and the `store` argument will be the pinia store representing this page.
 
-```js
+```javascript
 import { shallowRef } from "vue"
 import barChart from "@/components/charts/barChart.vue"
 export default class ExamplePage {
@@ -69,7 +69,7 @@ The page definition should have a `filters` function that returns the filter def
 * `beforeSet` and `afterSet` functions: these functions will accept two arguments `(action, store)` and be run in the before/after hooks for the setter actions provided by Harness-Vue using [Pinia's action subscriptions](https://pinia.vuejs.org/core-concepts/actions.html#subscribing-to-actions) The `action` argument will be an object with the name/args of the action and the `store` argument will be the pinia store representing this page.
 * `options` (`Array`): an array of options, each of which should be an object with a key and label. These options will be used for inputs like selects, radio groups and checkbox groups.
 
-```js
+```javascript
 import { shallowRef } from "vue"
 import selectComponent from "@/components/filters/selectComponent.vue"
 export default class ExamplePage {
@@ -126,7 +126,7 @@ Harness-Vue will attempt to find defaults for each filter at runtime, as well as
 ## Load Data
 A page definition also includes an asynchronous function called `loadData`. This function is given two arguments, (`pageDefinition`, `pageStore`), and is expected to return an object with a key for each chart and a value representing the data each chart should update to include. For more on how this function is used, please see the [lifecycle tutorial](/usage/lifecycle).
 
-```js
+```javascript
 export default class ExamplePage {
     // ... //
     loadData = async (pageDefinition, pageStore) => {
@@ -146,7 +146,7 @@ Similar to the `beforeSet` and `afterSet` functionality in the charts and filter
 
 ## Full Example
 
-```js
+```javascript
 import pageComponent from "@/components/pages/examplePage"
 import barChart from "@/components/charts/barChart.vue"
 import selectComponent from "@/components/filters/selectComponent.vue"
@@ -221,7 +221,7 @@ export default class ExamplePage {
 ## The Manifest file
 The Harness-Vue plugin expects an array of page definitions when installed. While you can assemble this entirely in your `main.js` Vue entrypoint, it is common practice in Harness-Vue applications to have a `manifest.js` file that gathers your page files and returns them in one place, like so:
 
-```js
+```javascript
 import examplePage from "./examplePage";
 const pages = [examplePage]; // add pages to this array
 export default pages;
@@ -230,7 +230,7 @@ export default pages;
 
 This would then be imported and passed along to Harness-Vue in your application startup:
 
-```js
+```javascript
 import { harnessPlugin } from "@rtidatascience/harness-vue"
 import pages from "./harness-pages/manifest"
 

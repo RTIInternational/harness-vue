@@ -23,7 +23,7 @@ For a full list of features available to interact with chart data, see the [char
 ## Structured Data and Tables
 Data visualization is a powerful tool, but some applications still require that users be able to view and even download the data driving a visualization. This can be important for Section 508 compliance and user experience, but made difficult given the requirements of some visualization libraries. For example, see this [Highcharts Demo Basic line chart](https://www.highcharts.com/demo/line-basic): 
 
-```js
+```javascript
 Highcharts.chart('container', {
     plotOptions: {
         series: {

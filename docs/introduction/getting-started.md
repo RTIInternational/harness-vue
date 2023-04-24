@@ -13,7 +13,7 @@ yarn add @rtidatascience/harness-vue
 
 After following Pinia's [instructions](https://pinia.vuejs.org/getting-started.html) on installing the core Pinia instance to your Vue application, pass the Pinia instance to Harness-Vue and install the plugin:
 
-```js
+```javascript
 import { harnessPlugin } from "@rtidatascience/harness-vue"
 // pages? more on this later!
 import pages from "./harness-pages/manifest"
@@ -31,7 +31,7 @@ app.mount("#app");
 ## Routing
 If using [Vue Router](https://router.vuejs.org/) for a single-page application, you can optionally pass the router instance to the Harness-Vue plugin to have Harness-Vue create a route for each Harness page definition in your application. This page will be located at the page's key and run the `loadData()` lifecycle hook in the `beforeEnter()` [navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#per-route-guard).
 
-```js
+```javascript
 import { harnessPlugin } from "@rtidatascience/harness-vue"
 // pages? more on this later!
 import pages from "./harness-pages/manifest"
@@ -62,7 +62,7 @@ If the mixin detects a match, all of the available Harness-Vue API functions are
 To install the mixin, import it from the core library and install it as a mixin.
 
 `main.js`
-```js
+```javascript
 import { harnessPlugin, harnessMixin } from "@rtidatascience/harness-vue"
 // pages? more on this later!
 import pages from "./harness-pages/manifest"
@@ -78,7 +78,7 @@ app.mount("#app");
 ```
 
 Component Example:
-```js
+```vue
 <template>
   <div>
     {{ getChartData(chartKey) }}

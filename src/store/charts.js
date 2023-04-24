@@ -1,12 +1,16 @@
 import { capitalize } from "./utils";
 import { saveAs } from "file-saver";
 
+/**
+ * @module pageStore
+ */
 export function getChartGetters() {
   return {
     /**
      * Returns the chart object for a given key
      *
      * @param  {String} key a chart key
+     * @memberof module:pageStore
      */
     getChartDefinition(state) {
       return (key) => {
@@ -19,6 +23,7 @@ export function getChartGetters() {
      * Returns data for a given chart
      *
      * @param  {String} key a chart key
+     * @memberof module:pageStore
      */
     getChartData(state) {
       return (key) => {
@@ -31,6 +36,7 @@ export function getChartGetters() {
      * Returns the full action string for a given chart. Useful for checking in subscriptions
      *
      * @param  {String} key a chart key
+     * @memberof module:pageStore
      */
     getChartDataActionString(state) {
       return (key) => {
@@ -43,6 +49,7 @@ export function getChartGetters() {
      * Returns the props for a given chart if they exist
      *
      * @param  {String} key a chart key
+     * @memberof module:pageStore
      */
     getChartProps(state) {
       return (key) => {
@@ -56,6 +63,7 @@ export function getChartGetters() {
      *
      * @param  {any} data the data to be validated. If null, it will not validate (for lifecyle)
      * @param  {} key the key for this data's chart
+     * @memberof module:pageStore
      */
     validateChartData(state) {
       return (data, key) => {
@@ -98,6 +106,7 @@ export function getChartActions() {
      * Sets data for a given chart
      *
      * @param  {String} key a chart key
+     * @memberof module:pageStore
      */
     setChartData(key, payload) {
       this._validChartKey(key);
@@ -109,6 +118,7 @@ export function getChartActions() {
      *
      * @param  {String} key a chart key
      * @param  {String} returnFormat format to generate the CSV in
+     * @memberof module:pageStore
      */
     generateCSV(key, returnFormat = "string") {
       this._validChartKey(key);
@@ -153,6 +163,7 @@ export function getChartActions() {
      * If a chartTitle prop exists, the csv will be generated using that as the file name
      *
      * @param  {String} key a chart key
+     * @memberof module:pageStore
      */
     downloadCSV(key) {
       this._validChartKey(key);

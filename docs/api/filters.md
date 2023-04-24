@@ -1,152 +1,200 @@
-# Charts
+# Filters
 
-The following API functions allow developers to interact with filters. These functions are all mapped to the pinia store created for a given page, so they are available in a number of ways.
-
-When using the global mixin for the options API, these will all be mapped to each component and available as `this.<function>`. In the `loadData` context, these will be available on the `pageStore` provided by the function.
+The following API functions allow developers to interact with filters. For more information on how to use these functions, see the [API usage page](/api/usage).
 
 [[toc]]
 
-<a name="getFilterActionString"></a>
+<a name="module_pageStore"></a>
 
-## getFilterActionString(key)
+## pageStore
+
+* [pageStore](#module_pageStore)
+    * [.getFilter(key)](#module_pageStore.getFilter)
+    * [.getFilterActionString(key)](#module_pageStore.getFilterActionString)
+    * [.getFilterDefinition(key)](#module_pageStore.getFilterDefinition)
+    * [.getFilterProps(key)](#module_pageStore.getFilterProps)
+    * [.getLabel(key)](#module_pageStore.getLabel)
+    * [.getOptionsForFilter(key)](#module_pageStore.getOptionsForFilter)
+    * [.getLabelForOptionKey(filter, key)](#module_pageStore.getLabelForOptionKey)
+    * [.getLabelForSelectedOption(key)](#module_pageStore.getLabelForSelectedOption)
+    * [.getFilterDefault(key)](#module_pageStore.getFilterDefault)
+    * [.getFilterDefaultLabel(key)](#module_pageStore.getFilterDefaultLabel)
+    * [.isFilterDirty(key)](#module_pageStore.isFilterDirty)
+    * [.areFiltersDirty()](#module_pageStore.areFiltersDirty)
+    * [.getDirtyFilters()](#module_pageStore.getDirtyFilters)
+    * [.setFilter(key, payload)](#module_pageStore.setFilter)
+    * [.setFilterLabel(key, payload)](#module_pageStore.setFilterLabel)
+    * [.setOptionsForFilter(key, payload, setOptionToDefault)](#module_pageStore.setOptionsForFilter)
+    * [.setOptionPropertyToBoolean(filter, optionKeysToSet, property, bool)](#module_pageStore.setOptionPropertyToBoolean)
+    * [.disableOptions(filter, optionKeys)](#module_pageStore.disableOptions)
+    * [.enableOptions(filter, optionKeys)](#module_pageStore.enableOptions)
+    * [.hideOptions(filter, optionKeys)](#module_pageStore.hideOptions)
+    * [.showOptions(filter, optionKeys)](#module_pageStore.showOptions)
+
+<a name="module_pageStore.getFilter"></a>
+
+### pageStore.getFilter(key)
+Returns the value for a given filter
+
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | a filter key |
+
+<a name="module_pageStore.getFilterActionString"></a>
+
+### pageStore.getFilterActionString(key)
 Returns the full action string for a given filter. Useful for checking in subscriptions
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="getFilterDefinition"></a>
+<a name="module_pageStore.getFilterDefinition"></a>
 
-## getFilterDefinition(key)
+### pageStore.getFilterDefinition(key)
 Returns the filter object for a given filter key
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="getFilterProps"></a>
+<a name="module_pageStore.getFilterProps"></a>
 
-## getFilterProps(key)
+### pageStore.getFilterProps(key)
 returns the props for a given filter, if they exist
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="getLabel"></a>
+<a name="module_pageStore.getLabel"></a>
 
-## getLabel(key)
+### pageStore.getLabel(key)
 Returns the label for a given filter
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="getOptionsForFilter"></a>
+<a name="module_pageStore.getOptionsForFilter"></a>
 
-## getOptionsForFilter(key)
+### pageStore.getOptionsForFilter(key)
 Returns the options array for a given filter
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="getLabelForOptionKey"></a>
+<a name="module_pageStore.getLabelForOptionKey"></a>
 
-## getLabelForOptionKey(filter, key)
+### pageStore.getLabelForOptionKey(filter, key)
 Returns the label for a given option by key
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | filter | <code>String</code> | a filter key |
 | key | <code>String</code> | an option key for an option included in the filter |
 
-<a name="getLabelForSelectedOption"></a>
+<a name="module_pageStore.getLabelForSelectedOption"></a>
 
-## getLabelForSelectedOption(key)
+### pageStore.getLabelForSelectedOption(key)
 Returns the label for a filter's selected option
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="getFilterDefault"></a>
+<a name="module_pageStore.getFilterDefault"></a>
 
-## getFilterDefault(key)
+### pageStore.getFilterDefault(key)
 Returns the default option for a given filter
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="getFilterDefaultLabel"></a>
+<a name="module_pageStore.getFilterDefaultLabel"></a>
 
-## getFilterDefaultLabel(key)
+### pageStore.getFilterDefaultLabel(key)
 Returns the label for the default option for a given filter
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="isFilterDirty"></a>
+<a name="module_pageStore.isFilterDirty"></a>
 
-## isFilterDirty(key)
+### pageStore.isFilterDirty(key)
 Returns a boolean indicating whether or not the value of state filter is equal to the value of the default. If true, the filter is no longer set to default.
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 
-<a name="areFiltersDirty"></a>
+<a name="module_pageStore.areFiltersDirty"></a>
 
-## areFiltersDirty()
+### pageStore.areFiltersDirty()
 Returns a boolean indicating whether or not any filters on the page have been set to a value other than their default
 
-**Kind**: global function  
-<a name="getDirtyFilters"></a>
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
+<a name="module_pageStore.getDirtyFilters"></a>
 
-## getDirtyFilters()
+### pageStore.getDirtyFilters()
 Returns an array of filter keys for dirty filters
 
-**Kind**: global function  
-<a name="setFilter"></a>
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
+<a name="module_pageStore.setFilter"></a>
 
-## setFilter(key, payload)
+### pageStore.setFilter(key, payload)
 Sets a given filter's value
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>String</code> | a filter key |
 | payload | <code>any</code> | a payload to set |
 
-<a name="setOptionsForFilter"></a>
+<a name="module_pageStore.setFilterLabel"></a>
 
-## setOptionsForFilter(key, payload, setOptionToDefault)
+### pageStore.setFilterLabel(key, payload)
+Sets a given filter's label
+
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | a filter key |
+| payload | <code>any</code> | a payload to set |
+
+<a name="module_pageStore.setOptionsForFilter"></a>
+
+### pageStore.setOptionsForFilter(key, payload, setOptionToDefault)
 Sets the options for a given filter to the array provided as payload
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -154,12 +202,12 @@ Sets the options for a given filter to the array provided as payload
 | payload | <code>Array</code> |  | a payload to set |
 | setOptionToDefault | <code>Boolean</code> | <code>false</code> | optional variable, if true will set the filter default |
 
-<a name="setOptionPropertyToBoolean"></a>
+<a name="module_pageStore.setOptionPropertyToBoolean"></a>
 
-## setOptionPropertyToBoolean(filter, optionKeysToSet, property, bool)
+### pageStore.setOptionPropertyToBoolean(filter, optionKeysToSet, property, bool)
 Set disabled property to true or false on each filter
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -168,48 +216,48 @@ Set disabled property to true or false on each filter
 | property | <code>String</code> | the name of the property |
 | bool | <code>Boolean</code> | the boolean value to apply to the property |
 
-<a name="disableOptions"></a>
+<a name="module_pageStore.disableOptions"></a>
 
-## disableOptions(filter, optionKeys)
+### pageStore.disableOptions(filter, optionKeys)
 Set disabled property to false for given options
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | filter | <code>String</code> | a filter key |
 | optionKeys | <code>Array</code> | an array of optionKeys |
 
-<a name="enableOptions"></a>
+<a name="module_pageStore.enableOptions"></a>
 
-## enableOptions(filter, optionKeys)
+### pageStore.enableOptions(filter, optionKeys)
 Set disabled property to false for given options
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | filter | <code>String</code> | a filter key |
 | optionKeys | <code>Array</code> | an array of optionKeys |
 
-<a name="hideOptions"></a>
+<a name="module_pageStore.hideOptions"></a>
 
-## hideOptions(filter, optionKeys)
+### pageStore.hideOptions(filter, optionKeys)
 Set hidden property to true for given options
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | filter | <code>String</code> | a filter key |
 | optionKeys | <code>Array</code> | an array of optionKeys |
 
-<a name="showOptions"></a>
+<a name="module_pageStore.showOptions"></a>
 
-## showOptions(filter, optionKeys)
+### pageStore.showOptions(filter, optionKeys)
 Set hidden property to false for given options
 
-**Kind**: global function  
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |

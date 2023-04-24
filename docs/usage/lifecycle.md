@@ -17,7 +17,7 @@ In the components representing the `groupBy` and `dataSource` filters, `loadData
 
 An example `loadData` function for this page could look like so:
 
-```js
+```javascript
 import  { groupByMetric, formatForTimeseries, formatForPieChart } from './utils'
 
 export default async function loadData(pageDefinition, pageStore) {
@@ -47,7 +47,7 @@ For ease of memoization, each page is given a `requestCache` state attribute (wi
 
 In the above example, if a user were to change the `groupBy` filter but not the `dataSource` filter, we would retrieve the data unnecessarily. Let's see how we can use `requestCache` to memoize this feature:
 
-```js
+```javascript
 import  { groupByMetric, formatForTimeseries, formatForPieChart } from './utils'
 
 export default async function loadData(pageDefinition, pageStore) {
