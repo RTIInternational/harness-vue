@@ -1,5 +1,4 @@
-# this is the node:10 image with python, pip, aws-cli and vue-cli installed
-FROM alexharding/node_python
+FROM node:18-alpine
 COPY ./ /harness-vue
 WORKDIR /harness-vue
 RUN npm install
