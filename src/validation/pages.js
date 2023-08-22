@@ -38,7 +38,7 @@ function validateFilters(page, base) {
     // check that filters do not contain special characters in keys
     if (pattern.test(filterKey)) {
       console.warn(
-        base + "filter key " + filterKey + " contains special characters."
+        base + "filter key " + filterKey + " contains special characters.",
       );
     }
     // check that filters have labels and options
@@ -50,23 +50,26 @@ function validateFilters(page, base) {
     }
     // check that all options have unique keys and no special characters
     const optionKeys = [];
-    for (const option of filters[filterKey].options) {
-      // if(pattern.test(option.key)){
-      //     console.warn(base + 'filter ' + filterKey + ' option ' + option.key + ' contains special characters')
-      // }
-      if (optionKeys.includes(option.key)) {
-        console.warn(
-          base +
-            "filter " +
-            filterKey +
-            " option " +
-            option.key +
-            " is not unique"
-        );
-      }
+    if (filters[filterKey].options) {
+      for (const option of filters[filterKey].options) {
+        // if(pattern.test(option.key)){
+        //     console.warn(base + 'filter ' + filterKey + ' option ' + option.key + ' contains special characters')
+        // }
+        if (optionKeys.includes(option.key)) {
+          console.warn(
+            base +
+              "filter " +
+              filterKey +
+              " option " +
+              option.key +
+              " is not unique",
+          );
+        }
 
-      optionKeys.push(option.key);
+        optionKeys.push(option.key);
+      }
     }
+
     if (filterKey in filterKeys) {
       console.warn(base + "filter " + filterKey + " is not unique");
     }
