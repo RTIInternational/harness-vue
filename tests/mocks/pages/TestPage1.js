@@ -17,6 +17,7 @@ export default class TestPage1 {
       filter1: {
         key: "filter1",
         label: "Filter 1",
+        valueType: "string",
         props: {
           test: true,
         },
@@ -35,7 +36,17 @@ export default class TestPage1 {
       },
       filter2: {
         key: "filter2",
-        label: "Filter 1",
+        label: "Filter 2",
+        valueType: "array",
+        valueValidator: (state, value) => {
+          let ret = true;
+          value.forEach((v) => {
+            if (typeof v !== "number") {
+              ret = false;
+            }
+          });
+          return ret;
+        },
         props: {
           test: true,
         },

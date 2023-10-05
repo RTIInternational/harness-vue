@@ -1,4 +1,10 @@
 export default function getDefaultOption(filter, options = []) {
+  // if a defaultValue is specified
+  if (filter.defaultValue) {
+    return filter.default;
+  }
+
+  // if no default and has options
   if (options.length) {
     const defaultOption = options.filter((option) => option.default);
     let filterDefault = null;
@@ -19,6 +25,15 @@ export default function getDefaultOption(filter, options = []) {
     return filterDefault;
   }
 
+  // if no default and has type
+  if (filter.valueType) {
+    if (typeof filter.valueType === "function") {
+      const out = new filter.valueType();
+      return out.valueOf();
+    }
+  }
+
+  // if no default, no type, return array or null
   if (filter.props && filter.props.multiple === true) {
     return [];
   }
