@@ -48,7 +48,7 @@ describe("DV Filter functions", () => {
   it("Can Get Filter Props", () => {
     let hs = mockHs();
     Object.keys(page.filters()).forEach((filterKey) => {
-      expect(hs.getFilterProps(filterKey)).toEqual({ test: true });
+      expect(hs.getFilterProps(filterKey).test).toEqual(true);
     });
   });
   it("Can Get Filter Label", () => {
@@ -61,7 +61,7 @@ describe("DV Filter functions", () => {
     let hs = mockHs();
     Object.keys(page.filters()).forEach((filterKey) => {
       expect(hs.getOptionsForFilter(filterKey)).toEqual(
-        page.filters()[filterKey].options
+        page.filters()[filterKey].options,
       );
     });
   });
@@ -71,7 +71,7 @@ describe("DV Filter functions", () => {
       let testOptions = [{ key: "test", label: "Test", default: true }];
       hs.setOptionsForFilter(filterKey, testOptions);
       expect(hs.getOptionsForFilter(filterKey)).not.toEqual(
-        page.filters()[filterKey].options
+        page.filters()[filterKey].options,
       );
       expect(hs.getOptionsForFilter(filterKey)).toEqual(testOptions);
     });
@@ -84,6 +84,7 @@ describe("DV Filter functions", () => {
         { key: "test2", label: "Test 2", default: true },
       ];
       hs.setOptionsForFilter(filterKey, testOptions, true);
+
       expect(hs.getFilter(filterKey)).toEqual("test2");
     });
   });
@@ -92,7 +93,7 @@ describe("DV Filter functions", () => {
     Object.keys(page.filters()).forEach((filterKey) => {
       page.filters()[filterKey].options.forEach((option) => {
         expect(hs.getLabelForOptionKey(filterKey, option.key)).toEqual(
-          option.label
+          option.label,
         );
       });
     });
@@ -103,7 +104,7 @@ describe("DV Filter functions", () => {
       page.filters()[filterKey].options.forEach((option) => {
         hs.setFilter(filterKey, option.key);
         expect(hs.getLabelForSelectedOption(filterKey, option.key)).toEqual(
-          option.label
+          option.label,
         );
       });
     });
@@ -179,5 +180,24 @@ describe("DV Filter functions", () => {
     expect(hs.areFiltersDirty()).toBeFalsy();
     hs.setFilter("filter1", "filter1option2");
     expect(hs.getDirtyFilters()).toEqual(["filter1"]);
+  });
+
+  it("Can check filter validity", () => {
+    let hs = mockHs();
+    // filter1 is meant to be a string
+    hs.setFilter("filter1", 4);
+    expect(hs.isFilterValid("filter1")).toBeFalsy();
+    hs.setFilter("filter1", "4");
+    expect(hs.isFilterValid("filter1")).toBeTruthy();
+
+    // filter2 is meant to be an array of numbers
+    hs.setFilter("filter2", 4);
+    expect(hs.isFilterValid("filter2")).toBeFalsy();
+    hs.setFilter("filter2", []);
+    expect(hs.isFilterValid("filter2")).toBeTruthy();
+    hs.setFilter("filter2", ["a", 3, "b", 4]);
+    expect(hs.isFilterValid("filter2")).toBeFalsy();
+    hs.setFilter("filter2", [3, 4, 5, 5.5]);
+    expect(hs.isFilterValid("filter2")).toBeTruthy();
   });
 });

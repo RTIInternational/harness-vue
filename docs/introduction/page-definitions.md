@@ -98,6 +98,10 @@ export default class ExamplePage {
                 ],
                 afterSet(action, store) {
                     // do something after set!
+                },
+                valueType: "string",
+                valueValidator: (pageStore, value) => {
+                    return value.includes("exampleOption");
                 }
             },
         }
@@ -121,7 +125,10 @@ For each filter in the page definition, Harness-Vue will create the following:
 By default, the value of each filter is expected to be a `String`. However, if a filter is given the prop `multiple` set to `true`, then the value of the filter will be expected to be an `Array`.
 
 ### Defaults
-Harness-Vue will attempt to find defaults for each filter at runtime, as well as whenever instructed to via the `intializeDefaults()` lifecycle hook. Harness-Vue will look for options with the `default` attribute set to `true`. If none exist, it will use the first option as a default.
+Harness-Vue will attempt to find defaults for each filter at runtime, as well as whenever instructed to via the `intializeDefaults()` lifecycle hook. Harness-Vue will look for options with the `default` attribute set to `true`. If none exist, it will use the first option as a default. If a `defaultValue` is specified, that will take precendence over all other default values.
+
+### Validation and Type Checking
+Harness-Vue optionally allows developers to specify a `valueType` and/or a `valueValidator` function to calculate filter validity. This can be used for styling and function.
 
 ## Load Data
 A page definition also includes an asynchronous function called `loadData`. This function is given two arguments, (`pageDefinition`, `pageStore`), and is expected to return an object with a key for each chart and a value representing the data each chart should update to include. For more on how this function is used, please see the [lifecycle tutorial](/usage/lifecycle).
@@ -189,6 +196,10 @@ export default class ExamplePage {
                 ],
                 afterSet(action, store) {
                     // do something after set!
+                },
+                valueType: "string",
+                valueValidator: (pageStore, value) => {
+                    return value.includes("exampleOption");
                 }
             },
         }

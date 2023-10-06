@@ -22,6 +22,7 @@ The following API functions allow developers to interact with filters. For more 
     * [.isFilterDirty(key)](#module_pageStore.isFilterDirty)
     * [.areFiltersDirty()](#module_pageStore.areFiltersDirty)
     * [.getDirtyFilters()](#module_pageStore.getDirtyFilters)
+    * [.isFilterValid(key)](#module_pageStore.isFilterValid)
     * [.setFilter(key, payload)](#module_pageStore.setFilter)
     * [.setFilterLabel(key, payload)](#module_pageStore.setFilterLabel)
     * [.setOptionsForFilter(key, payload, setOptionToDefault)](#module_pageStore.setOptionsForFilter)
@@ -165,6 +166,19 @@ Returns a boolean indicating whether or not any filters on the page have been se
 Returns an array of filter keys for dirty filters
 
 **Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
+<a name="module_pageStore.isFilterValid"></a>
+
+### pageStore.isFilterValid(key)
+Returns a boolean indicating whether or not the value of state filter is valid
+Validity is calculated using a specified valueType and/or valueValidator on the filter definition
+A filter with neither always returns true
+
+**Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | a filter key |
+
 <a name="module_pageStore.setFilter"></a>
 
 ### pageStore.setFilter(key, payload)

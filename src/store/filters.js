@@ -138,7 +138,7 @@ export function getFilterGetters() {
         state._validFilterKey(key);
         return state.getLabelForOptionKey(
           state.filters[key],
-          state.getFilterDefault(key)
+          state.getFilterDefault(key),
         );
       };
     },
@@ -173,7 +173,7 @@ export function getFilterGetters() {
             }
             return final;
           }.bind(state),
-          false
+          false,
         );
       };
     },
@@ -188,8 +188,49 @@ export function getFilterGetters() {
         return Object.keys(state.filters).filter(
           function (filter) {
             return state.isFilterDirty(filter);
-          }.bind(state)
+          }.bind(state),
         );
+      };
+    },
+
+    /**
+     * Returns a boolean indicating whether or not the value of state filter is valid
+     * Validity is calculated using a specified valueType and/or valueValidator on the filter definition
+     * A filter with neither always returns true
+     *
+     * @param  {String} key a filter key
+     * @memberof module:pageStore
+     */
+    isFilterValid(state) {
+      return (key) => {
+        state._validFilterKey(key);
+        const filterDefinition = state.getFilterDefinition(key);
+        const filterValue = state.getFilter(key);
+        // if a type is specified and the value doesn't match the type
+        // return false
+        if (filterDefinition.valueType) {
+          // check for arrays differently because they evaluate to object
+          if (filterDefinition.valueType === "array") {
+            if (!Array.isArray(filterValue)) {
+              return false;
+            }
+          } else {
+            if (
+              typeof filterValue !== filterDefinition.valueType.toLowerCase()
+            ) {
+              return false;
+            }
+          }
+        }
+        // if a validator function is present and fails, return false
+        if (
+          filterDefinition.valueValidator &&
+          !filterDefinition.valueValidator(state, filterValue)
+        ) {
+          return false;
+        }
+
+        return true;
       };
     },
   };
