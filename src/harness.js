@@ -3,7 +3,7 @@ import useHarnessStore from "./store/harnessStore.js";
 import createHarnessStore from "./store/createHarnessStore.js";
 import createHarnessRoute from "./router/route.js";
 import harnessMixin from "./mixin/mixin.js";
-import useHarnessComposable from "./composable/composable";
+import useHarnessComposable from "./composable/composable.js";
 const harnessPlugin = {
   install: (app, options) => {
     // create harness metadata store in pinia
