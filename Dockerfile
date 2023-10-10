@@ -1,4 +1,4 @@
-FROM alexharding/node_python:3.0
+FROM alexharding/node_python:latest
 COPY ./ /harness-vue
 WORKDIR /harness-vue
 RUN npm install
