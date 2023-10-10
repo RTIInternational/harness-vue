@@ -1,5 +1,6 @@
 import { capitalize } from "./utils.js";
-import { saveAs } from "file-saver";
+import pkg from "file-saver";
+const { saveAs } = pkg;
 
 /**
  * @module pageStore
