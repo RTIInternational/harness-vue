@@ -1,4 +1,4 @@
-import { capitalize } from "./utils";
+import { capitalize } from "./utils.js";
 
 /**
  * @module pageStore

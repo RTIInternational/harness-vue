@@ -1,4 +1,4 @@
-import getDefaultOption from "./defaultOption";
+import getDefaultOption from "./defaultOption.js";
 
 export default function getState(pageDefinition) {
   // create initial state with raw data
@@ -15,7 +15,7 @@ export default function getState(pageDefinition) {
   for (const filterKey in filters) {
     state[`${filterKey}Filter`] = getDefaultOption(
       filters[filterKey],
-      filters[filterKey].options
+      filters[filterKey].options,
     );
     state[`${filterKey}Options`] = filters[filterKey].options || [];
   }

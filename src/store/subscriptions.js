@@ -1,4 +1,4 @@
-import { capitalize } from "./utils";
+import { capitalize } from "./utils.js";
 
 export default function subscribeActions(store, pageDefinition) {
   store.$onAction(({ name, store, args, after }) => {

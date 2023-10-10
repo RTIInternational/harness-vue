@@ -1,6 +1,6 @@
-import { capitalize } from "./utils";
-import useHarnessStore from "./harnessStore";
-import getDefaultOption from "./defaultOption";
+import { capitalize } from "./utils.js";
+import useHarnessStore from "./harnessStore.js";
+import getDefaultOption from "./defaultOption.js";
 /**
  * @module pageStore
  */
@@ -54,7 +54,7 @@ export default function getActions(pageDefinition) {
     async loadData() {
       if (!pageDefinition.loadData) {
         throw String(
-          "loadData function is missing in page file. loadData must exist to use LOAD_DATA action"
+          "loadData function is missing in page file. loadData must exist to use LOAD_DATA action",
         );
       }
       const harnessStore = useHarnessStore();
@@ -99,8 +99,8 @@ export default function getActions(pageDefinition) {
           filterKey,
           getDefaultOption(
             this.getFilterDefinition(filterKey),
-            this.getOptionsForFilter(filterKey)
-          )
+            this.getOptionsForFilter(filterKey),
+          ),
         );
       });
     },

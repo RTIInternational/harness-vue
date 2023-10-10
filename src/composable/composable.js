@@ -1,6 +1,6 @@
 // https://stackoverflow.com/questions/72209080/vue-3-is-getcurrentinstance-deprecated
 import { getCurrentInstance } from "vue";
-import { useHarnessStore } from "../harness";
+import { useHarnessStore } from "../harness.js";
 
 export default function useHarnessComposable() {
   const harnessMetadata = useHarnessStore();
@@ -12,7 +12,7 @@ export default function useHarnessComposable() {
   if (
     vueInstance.appContext.config.globalProperties.$route?.name &&
     harnessMetadata.getPages.includes(
-      vueInstance.appContext.config.globalProperties.$route.name
+      vueInstance.appContext.config.globalProperties.$route.name,
     )
   ) {
     waypoint = vueInstance.appContext.config.globalProperties.$route.name;

@@ -1,4 +1,4 @@
-import { capitalize } from "./utils";
+import { capitalize } from "./utils.js";
 import { saveAs } from "file-saver";
 
 /**
@@ -153,7 +153,7 @@ export function getChartActions() {
       } catch (error) {
         throw String(
           "There was an error generating a CSV for this given data: " +
-            String(error)
+            String(error),
         );
       }
     },
@@ -173,7 +173,7 @@ export function getChartActions() {
       } catch (error) {
         throw String(
           "There was an error downloading a CSV for this given data: " +
-            String(error)
+            String(error),
         );
       }
     },

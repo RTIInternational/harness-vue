@@ -1,5 +1,5 @@
-import { capitalize } from "./utils";
-import getDefaultOption from "./defaultOption";
+import { capitalize } from "./utils.js";
+import getDefaultOption from "./defaultOption.js";
 
 /**
  * @module pageStore

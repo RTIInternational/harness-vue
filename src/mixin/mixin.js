@@ -1,12 +1,12 @@
-import getActions from "../store/actions";
-import getState from "../store/state";
-import getValidationFunctions from "../store/validation";
-import getGetters from "../store/getters";
-import getDataHelperFunctions from "../store/data";
-import { getFilterActions, getFilterGetters } from "../store/filters";
-import { getChartActions, getChartGetters } from "../store/charts";
-// import getDataHelperFunctions from "../store/data";
-import useHarnessStore from "../store/harnessStore";
+import getActions from "../store/actions.js";
+import getState from "../store/state.js";
+import getValidationFunctions from "../store/validation.js";
+import getGetters from "../store/getters.js";
+import getDataHelperFunctions from "../store/data.js";
+import { getFilterActions, getFilterGetters } from "../store/filters.js";
+import { getChartActions, getChartGetters } from "../store/charts.js";
+// import getDataHelperFunctions from "../store/data.js";
+import useHarnessStore from "../store/harnessStore.js";
 import { mapActions, mapState } from "pinia";
 
 export default function mixin(pinia) {
@@ -71,6 +71,6 @@ export default function mixin(pinia) {
 
 function getAttributeNames(obj) {
   return Object.getOwnPropertyNames(obj).filter(
-    (key) => !key.includes("_") && key !== "constructor"
+    (key) => !key.includes("_") && key !== "constructor",
   );
 }

@@ -1,12 +1,12 @@
 import { defineStore } from "pinia";
-import getActions from "./actions";
-import getState from "./state";
-import getGetters from "./getters";
-import getValidationFunctions from "./validation";
-import { getFilterGetters, getFilterActions } from "./filters";
-import { getChartGetters, getChartActions } from "./charts";
-import getDataHelperFunctions from "./data";
-import subscribeActions from "./subscriptions";
+import getActions from "./actions.js";
+import getState from "./state.js";
+import getGetters from "./getters.js";
+import getValidationFunctions from "./validation.js";
+import { getFilterGetters, getFilterActions } from "./filters.js";
+import { getChartGetters, getChartActions } from "./charts.js";
+import getDataHelperFunctions from "./data.js";
+import subscribeActions from "./subscriptions.js";
 
 export default function createHarnessStore(pageDefinition, options) {
   // options syntax
