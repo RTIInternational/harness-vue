@@ -22,7 +22,7 @@ jobs:
           docker exec -t harness-vue-ci npm run test
 
       - name: Build and Deploy Docs
-        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
+        # if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
         run: docker exec -t harness-vue-ci npm run docs:generate
           # docker exec -t harness-vue-ci npm run docs:build
           # docker exec -t harness-vue-ci aws configure set region us-east-1
