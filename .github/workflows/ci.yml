@@ -5,32 +5,27 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+      - run: npm ci
+      - run: npm run lint --no-fix --no-error-on-unmatched-pattern
+      - run: npm test
+      - run: npm run docs:generate
+      - run: npm run docs:build
 
-      - name: Build Docker image
-        run: |
-          docker build ./ -t harness-vue-ci --no-cache --rm
-          docker run -d -t --name harness-vue-ci harness-vue-ci:latest /bin/sh
-
-      - name: Lint app
-        run: |
-          docker exec -t harness-vue-ci npm run lint --no-fix --no-error-on-unmatched-pattern
-      
-      - name: Test app
-        run: |
-          docker exec -t harness-vue-ci npm run test
-
-      - name: Build and Deploy Docs
+      # - name: Build and Deploy Docs
         # if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
-        run: |
-          docker exec -t harness-vue-ci npm run docs:generate
-          docker exec -t harness-vue-ci npm run docs:build
-          # docker exec -t harness-vue-ci aws configure set region us-east-1
-          # docker exec -t harness-vue-ci aws configure set aws_access_key_id ${{ secrets.S3_ONLY_AWS_ACCESS_KEY_ID }}
-          # docker exec -t harness-vue-ci aws configure set aws_secret_access_key ${{ secrets.S3_ONLY_AWS_SECRET_ACCESS_KEY }}
-          # docker exec -t harness-vue-ci aws s3 rm s3://harness-docs --recursive
-          # docker exec -t harness-vue-ci aws s3 sync docs/.vitepress/dist s3://harness-docs
-          # docker exec -t harness-vue-ci aws cloudfront create-invalidation --distribution-id E3K46T9KULV7VZ --paths "/*"
+        # run: |
+        #   docker exec -t harness-vue-ci npm run docs:generate
+        #   docker exec -t harness-vue-ci npm run docs:build
+        #   # docker exec -t harness-vue-ci aws configure set region us-east-1
+        #   # docker exec -t harness-vue-ci aws configure set aws_access_key_id ${{ secrets.S3_ONLY_AWS_ACCESS_KEY_ID }}
+        #   # docker exec -t harness-vue-ci aws configure set aws_secret_access_key ${{ secrets.S3_ONLY_AWS_SECRET_ACCESS_KEY }}
+        #   # docker exec -t harness-vue-ci aws s3 rm s3://harness-docs --recursive
+        #   # docker exec -t harness-vue-ci aws s3 sync docs/.vitepress/dist s3://harness-docs
+        #   # docker exec -t harness-vue-ci aws cloudfront create-invalidation --distribution-id E3K46T9KULV7VZ --paths "/*"
 
           
