@@ -22,7 +22,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Build and deploy
-        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
+        # if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
         run: |
            npm run docs:generate
            npm run docs:build
