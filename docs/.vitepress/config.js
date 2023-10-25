@@ -2,6 +2,9 @@ export default {
     title: 'Harness-Vue',
     description: '',
     themeConfig: {
+        search: {
+            provider: 'local'
+        },
         sidebar: [
             {
                 text: 'Introduction',

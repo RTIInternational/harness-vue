@@ -12,6 +12,7 @@ coverage
 dist
 dist-ssr
 *.local
+docs/.vitepress/cache/
 
 # Editor directories and files
 .vscode/*
