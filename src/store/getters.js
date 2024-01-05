@@ -81,5 +81,9 @@ export default function getGetters(pageDefinition) {
     };
     getters[`get${capitalize(chartKey)}ChartData`] = getter;
   }
+
+  if (pageDefinition.extendGetters) {
+    Object.assign(getters, pageDefinition.extendGetters());
+  }
   return getters;
 }
