@@ -107,6 +107,7 @@ export default class TestPage1 {
       arbitrary: "test",
     };
   };
+  //eslint-disable-next-line
   extendSubscriptions = (name, args, store, pageDefinition, hook) => {
     // console.log(name, args, store, pageDefinition, hook);
   };
