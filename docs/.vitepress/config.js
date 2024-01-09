@@ -22,6 +22,7 @@ export default {
                     {text: 'The loadData Lifecycle', link: '/usage/lifecycle'},
                     {text: 'Working with Charts', link: '/usage/charts'},
                     {text: 'Working with Filters', link: '/usage/filters'},
+                    {text: "Extending the Store", link: '/usage/extending'},
                 ]
             },
             {
