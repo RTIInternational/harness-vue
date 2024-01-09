@@ -259,11 +259,11 @@ export default function getDataHelperFunctions() {
         const upperBound = quartiles["upperQuartile"] + 1.5 * quartiles["IQR"];
         if (idx) {
           return data.filter(
-            (datum) => datum[idx] <= lowerBound || datum[idx] >= upperBound
+            (datum) => datum[idx] <= lowerBound || datum[idx] >= upperBound,
           );
         } else {
           return data.filter(
-            (datum) => datum <= lowerBound || datum >= upperBound
+            (datum) => datum <= lowerBound || datum >= upperBound,
           );
         }
       };
@@ -298,11 +298,11 @@ export default function getDataHelperFunctions() {
         const upperBound = quartiles["upperQuartile"] + 1.5 * quartiles["IQR"];
         if (idx) {
           return data.filter(
-            (datum) => datum[idx] > lowerBound && datum[idx] < upperBound
+            (datum) => datum[idx] > lowerBound && datum[idx] < upperBound,
           );
         } else {
           return data.filter(
-            (datum) => datum > lowerBound && datum < upperBound
+            (datum) => datum > lowerBound && datum < upperBound,
           );
         }
       };

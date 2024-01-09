@@ -43,4 +43,8 @@ function runSubscriptions(name, args, store, pageDefinition, hook) {
       }
     });
   }
+
+  if (pageDefinition.extendSubscriptions) {
+    pageDefinition.extendSubscriptions(name, args, store, pageDefinition, hook);
+  }
 }

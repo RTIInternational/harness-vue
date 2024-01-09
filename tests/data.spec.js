@@ -29,7 +29,7 @@ describe("DV Data Helpers", () => {
     "1.01",
     new Date(),
   ];
-  let outOfOrderArrayFlat = [4, 1, 3, 1, 2, 4]
+  let outOfOrderArrayFlat = [4, 1, 3, 1, 2, 4];
   it("Can Validate Data", () => {
     let hs = mockHs();
 
@@ -150,7 +150,7 @@ describe("DV Data Helpers", () => {
     // test with all key
     hs.setFilter("filter1", "all");
     expect(hs.applyFilterToColumn("filter1", "test", dataArray, "all")).toEqual(
-      dataArray
+      dataArray,
     );
   });
 
@@ -334,7 +334,7 @@ describe("DV Data Helpers", () => {
       1, 2, 96, 98,
     ]);
     expect(
-      hs.getOutliers(mockSingleRowLowerThanGreaterThanObjects, "field2")
+      hs.getOutliers(mockSingleRowLowerThanGreaterThanObjects, "field2"),
     ).toEqual([
       { field1: 12, field2: 1 },
       { field1: 12, field2: 2 },
@@ -386,7 +386,7 @@ describe("DV Data Helpers", () => {
       39, 41, 43, 45, 49, 52, 55, 57, 59,
     ]);
     expect(
-      hs.removeOutliers(mockSingleRowLowerThanGreaterThanObjects, "field2")
+      hs.removeOutliers(mockSingleRowLowerThanGreaterThanObjects, "field2"),
     ).toEqual([
       { field1: 12, field2: 39 },
       { field1: 12, field2: 41 },

@@ -26,6 +26,10 @@ export default function getActions(pageDefinition) {
     actions[`set${capitalize(chartKey)}ChartData`] = chartAction;
   }
 
+  if (pageDefinition.extendActions) {
+    Object.assign(actions, pageDefinition.extendActions());
+  }
+
   return {
     ...actions,
     /**

@@ -87,4 +87,28 @@ export default class TestPage1 {
       },
     };
   };
+
+  extendGetters = () => {
+    return {
+      extendedGetter(state) {
+        return state || false;
+      },
+    };
+  };
+  extendActions = () => {
+    return {
+      extendedAction(payload) {
+        this.setFilter("filter1", payload);
+      },
+    };
+  };
+  extendState = () => {
+    return {
+      arbitrary: "test",
+    };
+  };
+  //eslint-disable-next-line
+  extendSubscriptions = (name, args, store, pageDefinition, hook) => {
+    // console.log(name, args, store, pageDefinition, hook);
+  };
 }

@@ -25,5 +25,9 @@ export default function getState(pageDefinition) {
   for (const chartkey in charts) {
     state[`${chartkey}ChartData`] = null;
   }
+  if (pageDefinition.extendState) {
+    Object.assign(state, pageDefinition.extendState());
+  }
+
   return state;
 }

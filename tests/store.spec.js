@@ -45,4 +45,18 @@ describe("DV Helper Init", () => {
       expect(hs[filterKey + "Filter"]).toBeTruthy();
     });
   });
+  it("Has extended getters", () => {
+    let hs = mockHs();
+    expect(hs.extendedGetter).toBeTruthy();
+  });
+  it("Has extended actions", () => {
+    let hs = mockHs();
+    // just wraps setFilter
+    hs.extendedAction("extended");
+    expect(hs.getFilter("filter1")).toEqual("extended");
+  });
+  it("Has extended state", () => {
+    let hs = mockHs();
+    expect(hs.arbitrary).toEqual("test");
+  });
 });
