@@ -1,7 +1,12 @@
 import { defineStore } from "pinia";
 
 export default defineStore("harnessVue", {
-  state: () => ({ pages: [], pageDefinitions: {}, pageStores: {} }),
+  state: () => ({
+    pages: [],
+    pageDefinitions: {},
+    pageStores: {},
+    optionsProvided: {},
+  }),
   getters: {
     getPages() {
       return this.pages;
@@ -11,6 +16,9 @@ export default defineStore("harnessVue", {
     },
     getPageStores() {
       return this.pageStores;
+    },
+    getOptionsProvided() {
+      return this.optionsProvided;
     },
   },
   actions: {
