@@ -8,7 +8,7 @@ const harnessPlugin = {
   install: (app, options) => {
     // create harness metadata store in pinia
     const harness = useHarnessStore(options.pinia);
-
+    harness.optionsProvided = options;
     // validate page files
     const validatedPages = pages(options.pages);
 

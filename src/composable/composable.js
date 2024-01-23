@@ -1,38 +1,38 @@
 // https://stackoverflow.com/questions/72209080/vue-3-is-getcurrentinstance-deprecated
-import { getCurrentInstance } from "vue";
 import { useHarnessStore } from "../harness.js";
 
-export default function useHarnessComposable() {
+/**
+ * Returns the current harness page store
+ * If a waypoint is provided, that store is returned
+ * If the route is provided and the route name matches a harness store key, that store is returned
+ * If there is no router and only a single harness page exists, that store is returned
+ * @param {any} waypoint=false a string matching a harness page store key
+ * @returns {Object} a pinia store representing a harness page
+ */
+export default function useHarnessComposable(waypoint = false) {
   const harnessMetadata = useHarnessStore();
-  const vueInstance = getCurrentInstance();
+  if (waypoint === false) {
+    let currentRoute =
+      harnessMetadata.optionsProvided?.router?.currentRoute?.name;
 
-  let waypoint = false;
+    // check for a vue-router route
+    if (currentRoute && harnessMetadata.getPages.includes(currentRoute)) {
+      waypoint = currentRoute;
+    }
 
-  // check for a vue-router route
+    // if router is not installed and only a single harness page exists, use it as waypoint
+    if (harnessMetadata.getPages.length === 1 && !currentRoute) {
+      waypoint = harnessMetadata.pages[0];
+    }
+  }
+
   if (
-    vueInstance.appContext.config.globalProperties.$route?.name &&
-    harnessMetadata.getPages.includes(
-      vueInstance.appContext.config.globalProperties.$route.name,
-    )
+    waypoint &&
+    Object.keys(harnessMetadata.getPageStores).includes(waypoint)
   ) {
-    waypoint = vueInstance.appContext.config.globalProperties.$route.name;
-  }
-
-  // if router is not installed and only a single harness page exists, use it as waypoint
-  if (
-    (harnessMetadata.getPages.length === 1) &
-    !vueInstance.appContext.config.globalProperties.$route
-  ) {
-    waypoint = harnessMetadata.pages[0];
-  }
-
-  // // if a waypoint override was specified, use that
-  if (vueInstance.attrs["harness-waypoint"]) {
-    waypoint = vueInstance.attrs["harness-waypoint"];
-  }
-
-  if (waypoint) {
     return harnessMetadata.getPageStores[waypoint]();
   }
-  return waypoint;
+  console.error(
+    `The detected waypoint ${waypoint} is not a valid harness page.`,
+  );
 }
