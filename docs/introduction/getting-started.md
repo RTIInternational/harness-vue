@@ -47,12 +47,13 @@ app.use(harnessPlugin, { pinia, pages, router })
 app.use(router);
 app.mount("#app");
 ```
+
 ## Automagic Page Stores
 One of the goals of Harness-Vue is the ability to write components that are widely reusable across pages, charts and filters - having an API of helper functions that provide contextualized actions on each page is a convenience feature that allows for more robust and reusable components. In order to assist in that process, Harness-Vue exports a global mixin for the options API and a composable for the composition API that detect what page your component is currently referring to using the following logic:
 
   * first by checking if the route name (if vue-router is used) matches the name of an installed page definition
   * second by checking if there is only one page and no vue-router installed and using that by default
-  * third by checking for a `harness-waypoint` prop that matches a page definition key
+  * third by checking for a provided `waypoint` rop that matches a page definition key
 
 
 ### Options API mixin

@@ -1,4 +1,4 @@
-# Page definitions
+# Page Definitions
 
 The core unit of the Harness-Vue plugin is the page definition. The page definition is an expected format for developers to provide to the plugin to be translated into Harness Vue pinia stores.
 
@@ -146,10 +146,28 @@ export default class ExamplePage {
     }
 }
 ```
-
-
-## Other
+### Before and After loadData
 Similar to the `beforeSet` and `afterSet` functionality in the charts and filters, page definitions can include `beforeLoadData` and `afterLoadData` functions to be run before and after `loadData`, respectively.
+
+## Routing
+If a router was provided, a [named route](https://router.vuejs.org/guide/essentials/named-routes.html) will be created for your page definition. This route will be defined using defaults, all of which can be overridden by providing your page definition with select attributes.
+
+* The `path` of the route will default to the page key, but can be overridden by providing a `routePath` attribute. Note that this will have a prepended slash automatically.
+* The `name` of the route will default to the page key, but can be overridden by providing a `routeName` attribute.
+* The route will be provided with a [navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#Per-Route-Guard) using the `beforeEnter` syntax. By default, this will run `clearData()` on route exit and `loadData()` on route enter. This can be overridden by providing your own `routeBeforeEnter(to, from, next, store)` function, which takes the `to`/`from`/`next` arguments from `beforeEnter` and additionally provides the page store. 
+
+```javascript
+export default class ExamplePage {
+    // ... //
+    routePath = 'dashboards/examplePage'
+    routeName = 'Example Page'
+    routeBeforeEnter(to, from, next, store){
+        console.log(`Came from ${from.name}`)
+        store.initializeDefaults()
+        store.loadData()
+    }
+}
+```
 
 ## Full Example
 
