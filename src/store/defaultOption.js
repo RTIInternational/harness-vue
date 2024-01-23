@@ -1,41 +1,32 @@
 export default function getDefaultOption(filter, options = []) {
   // if a defaultValue is specified
   if (filter.defaultValue) {
-    return filter.default;
+    return filter.defaultValue;
   }
 
-  // if no default and has options
+  // if no defaultValue is specified and filter has options
   if (options.length) {
-    const defaultOption = options.filter((option) => option.default);
-    let filterDefault = null;
-    if (filter.props && filter.props.multiple === true) {
-      filterDefault = defaultOption.length
-        ? defaultOption.reduce((acc, option) => {
-            acc.push(option.key);
-            return acc;
-          }, [])
-        : [];
-    } else {
-      filterDefault = defaultOption.length
-        ? defaultOption[0].key
-        : filter.options.length
-        ? filter.options[0].key
-        : null;
-    }
-    return filterDefault;
-  }
+    // get options where default is true
+    const defaultOptions = options.filter((option) => option.default);
 
-  // if no default and has type
-  if (filter.valueType) {
-    if (typeof filter.valueType === "function") {
-      const out = new filter.valueType();
-      return out.valueOf();
+    // return default(s) if they exist (as array if props.multiple is true)
+    if (defaultOptions.length > 0) {
+      if (filter?.props?.multiple === true) {
+        return defaultOptions.map((option) => option.key);
+      } else {
+        return defaultOptions[0].key;
+      }
+    }
+    // return first option if no default(s) detected
+    else {
+      if (filter?.props?.multiple === true) {
+        return [options[0].key];
+      } else {
+        return options[0].key;
+      }
     }
   }
 
-  // if no default, no type, return array or null
-  if (filter.props && filter.props.multiple === true) {
-    return [];
-  }
-  return null;
+  // if no defaultValue is specified and no options exist
+  return filter?.props?.multiple ? [] : null;
 }

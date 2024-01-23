@@ -78,15 +78,51 @@ describe("DV Filter functions", () => {
   });
   it("Can Set Default Option", () => {
     let hs = mockHs();
-    Object.keys(page.filters()).forEach((filterKey) => {
-      let testOptions = [
-        { key: "test1", label: "Test 1" },
-        { key: "test2", label: "Test 2", default: true },
-      ];
-      hs.setOptionsForFilter(filterKey, testOptions, true);
+    // TEST CASE 1: Explicit Default
+    hs.initializeDefaults(["testDefaultValue"]);
+    const filterToTest = hs.getFilterDefinition("testDefaultValue");
+    expect(hs.getFilter("testDefaultValue")).toEqual("default");
+    // note that this is not a pattern to follow in harness apps
+    // altering the filter definition in this way is not recommended
+    // any filter definition that defines initial state should be untouched
+    delete filterToTest.defaultValue;
 
-      expect(hs.getFilter(filterKey)).toEqual("test2");
-    });
+    // TEST CASE 2: No Default, No Options
+    hs.initializeDefaults(["testDefaultValue"]);
+    expect(hs.getFilter("testDefaultValue")).toEqual(null);
+
+    // TEST CASE 3: No Default, No Options, is multiple
+    filterToTest.props.multiple = true;
+    hs.initializeDefaults(["testDefaultValue"]);
+    expect(hs.getFilter("testDefaultValue")).toEqual([]);
+
+    // TEST CASE 4: No Default, Options with no defaults, is multiple
+    const mockOptions = [
+      { key: "option1", value: "option 1" },
+      { key: "option2", value: "option 2" },
+      { key: "option3", value: "option 3" },
+    ];
+    hs.setOptionsForFilter("testDefaultValue", mockOptions);
+    hs.initializeDefaults(["testDefaultValue"]);
+    expect(hs.getFilter("testDefaultValue")).toEqual(["option1"]);
+
+    // TEST CASE 5: No Default, Options with no defaults, not multiple
+    filterToTest.props.multiple = false;
+    hs.setOptionsForFilter("testDefaultValue", mockOptions);
+    hs.initializeDefaults(["testDefaultValue"]);
+    expect(hs.getFilter("testDefaultValue")).toEqual("option1");
+
+    // TEST CASE 6: No Default, Options with defaults, not multiple
+    mockOptions[1].default = true;
+    mockOptions[2].default = true;
+    hs.setOptionsForFilter("testDefaultValue", mockOptions);
+    hs.initializeDefaults(["testDefaultValue"]);
+    expect(hs.getFilter("testDefaultValue")).toEqual("option2");
+
+    // TEST CASE 7: No Default, Options with defaults, is multiple
+    filterToTest.props.multiple = true;
+    hs.initializeDefaults(["testDefaultValue"]);
+    expect(hs.getFilter("testDefaultValue")).toEqual(["option2", "option3"]);
   });
   it("Can Get Label for Option Key", () => {
     let hs = mockHs();
