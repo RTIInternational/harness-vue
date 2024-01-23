@@ -63,6 +63,12 @@ export default class TestPage1 {
           },
         ],
       },
+      testDefaultValue: {
+        label: "Test Default Value",
+        defaultValue: "default",
+        props: { test: true },
+        options: [],
+      },
     };
   };
   charts = function () {
