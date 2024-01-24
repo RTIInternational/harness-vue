@@ -4,8 +4,12 @@
 When building dashboards for the web, good state management is hard. Developers are often forced to weigh best practices against cost of labor, and incrementally build state and relationships between charts and filters over time - a process often responsible for technical debt. Passing parameters from filters to charts becomes a complex web of parents and children, often leading to the use of state management libraries such as vuex or Pinia. Writing state, getters, actions and mutations for every filter and every chart in a multi-page dashboard is a time-consuming process, and mapping this state to each component adds many lines of boilerplate code as each filter and chart needs to find its place in the store(s).
 
 ## Why Harness-Vue
+Harness-Vue accelerates the development of web dashboards by automating the processes outlined above. Using Harness-Vue, developers create page definitions as Javascript classes with an expected format that are passed along to the core library. The Harness-Vue plugin takes these page definitions and uses them to generate Pinia stores, each of which is populated with state, getters and actions for the defined charts and filters as well as a robust API for interaction with and between them. The Harness-Vue stores created by the 
+plugin provide developers with the following advantages:
 
-Harness-Vue accelerates the development of web dashboards by automating the processes outlined above. Using Harness-Vue, developers create page definitions as Javascript classes with an expected format that are passed along to the core library. The Harness-Vue plugin takes these page definitions and uses them to generate Pinia stores, each of which is populated with state, getters and actions for the defined charts and filters as well as a robust API for interaction with and between them. The Harness-Vue stores created by the plugin provide developers with the following advantages:
+
+### Proven Patterns
+Harness-Vue has been implemented in and is developed across 20+ projects since 2019 at RTI International. The patterns contained within Harness-Vue and its package ecosystem have been proven successful across a variety of complex data products, and these tools continually refine the patterns and add features to Harness-Vue.
 
 ### Time Savings, Tests, Documentation
 Using Harness-Vue saves a significant amount of time for developers in three ways: 
@@ -25,3 +29,8 @@ The Harness-Vue lifecycle and `loadData()` functionality, while opinionated, tak
 Using the Harness-Vue API functions, a component can expect to be contextualized to a page and chart/filter anonymously. This allows for greater component reuse with less boilerplate code in an application.
 
 For example, imagine an application that has two pages - one called `population` and one called `environment`. Each page has a number of filters and charts, but both pages have a simple timeseries line chart. On the `population` page, this chart is called `populationOverTime`, but on the `environment` page, it is called `temperatureOverTime`. Using Harness-Vue, each page is given a Pinia store, and each chart has a number of functions for getting at the chart data. In a normal application, one might have to write two components, one for each chart, each of which retrieves data from the correct endpoint, formats it for a timeseries linechart, then makes it available for the chart. Using Harness-Vue, a developer can write a single component that takes the chart key as a prop and uses API functions like `getChartData(chartKey)` as well as the global mixin to work regardless of page or chart.
+
+## The Name
+Harness is named after the humble [cable harness](https://en.wikipedia.org/wiki/Cable_harness), where a collection of wires with similar sources and destinations are bundled together to reduce the number of operations in installing/uninstalling components. In a similar fashion, the Harness tools allow you to only work at your source and destination, allowing the package to do the work in between.
+
+Our core package is named `Harness-Vue`, and our main component library is named `Harness-Vue-Bootstrap`. While not the catchiest, this naming convention allows for expansion. The pattern of `Harness-<framework>-<optional:package>` is intended to keep the door open for new Harness tools to grow over time, such as `Harness-Vue-Tailwind`, `Harness-Vue-Tailwind`, `Harness-Vue-Chartjs` or even `Harness-React`.
