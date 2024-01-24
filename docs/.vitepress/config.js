@@ -12,6 +12,7 @@ export default {
                 items: [
                     {text: 'About', link: '/introduction/index'},
                     {text: 'Installation', link: '/introduction/installation'},
+                    {text: 'Getting Started', link: '/introduction/getting-started'},
 
                 ]
             },

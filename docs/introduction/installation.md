@@ -39,7 +39,7 @@ app.use(harnessPlugin, { pinia, pages })
 app.mount("#app");
 ```
 
-## Routing
+### Routing
 If using [Vue Router](https://router.vuejs.org/) for a single-page application, you can optionally pass the router instance to the Harness-Vue plugin to have Harness-Vue create a route for each Harness page definition in your application. This page will be located at the page's key and run the `loadData()` lifecycle hook in the `beforeEnter()` [navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#per-route-guard).
 
 ```javascript
@@ -58,3 +58,6 @@ app.use(harnessPlugin, { pinia, pages, router })
 app.use(router);
 app.mount("#app");
 ```
+
+## Starter Template
+Additionally, we maintain [Harness-Vue-Starter-Template](https://github.com/RTIInternational/harness-vue-starter-template), a basic application created with [create-vue](https://github.com/vuejs/create-vue) with Harness-Vue and Harness-Vue-Bootstrap pre-installed as well as an example page definition with components.
