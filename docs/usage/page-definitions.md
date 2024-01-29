@@ -1,5 +1,4 @@
 # Page Definitions
-
 The core unit of the Harness-Vue plugin is the page definition. The page definition is an expected format for developers to provide to the plugin to be translated into Harness Vue pinia stores.
 
 A page definition is a Javascript class that includes the following attributes and methods. In development, the plugin will validate that your class conforms to the expected format and give verbose errors to correct any mistakes.

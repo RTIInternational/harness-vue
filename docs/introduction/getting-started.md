@@ -1,124 +1,29 @@
 # Getting Started
 
-## Application Dependencies
-Harness-Vue requires your application to include [Vue.js](https://vuejs.org/) 3.x with [Pinia](https://pinia.vuejs.org/) installed.
-
-## Installation
-Install Harness-Vue with the package manager of your choice:
-```sh
-npm install @rtidatascience/harness-vue
-# or with yarn
-yarn add @rtidatascience/harness-vue
-```
-
-After following Pinia's [instructions](https://pinia.vuejs.org/getting-started.html) on installing the core Pinia instance to your Vue application, pass the Pinia instance to Harness-Vue and install the plugin:
-
-```javascript
-import { harnessPlugin } from "@rtidatascience/harness-vue"
-// pages? more on this later!
-import pages from "./harness-pages/manifest"
-
-import App from "./App.vue"
-
-const app = createApp(App)
-const pinia = createPinia()
-
-app.use(pinia)
-app.use(harnessPlugin, { pinia, pages })
-app.mount("#app");
-```
-
-## Routing
-If using [Vue Router](https://router.vuejs.org/) for a single-page application, you can optionally pass the router instance to the Harness-Vue plugin to have Harness-Vue create a route for each Harness page definition in your application. This page will be located at the page's key and run the `loadData()` lifecycle hook in the `beforeEnter()` [navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#per-route-guard).
-
-```javascript
-import { harnessPlugin } from "@rtidatascience/harness-vue"
-// pages? more on this later!
-import pages from "./harness-pages/manifest"
-import router from "./router";
-import App from "./App.vue"
-
-const app = createApp(App)
-const pinia = createPinia()
-
-app.use(pinia)
-app.use(harnessPlugin, { pinia, pages, router })
-// add the router to the application AFTER Harness-Vue
-app.use(router);
-app.mount("#app");
-```
-
-## Automagic Page Stores
-One of the goals of Harness-Vue is the ability to write components that are widely reusable across pages, charts and filters - having an API of helper functions that provide contextualized actions on each page is a convenience feature that allows for more robust and reusable components. In order to assist in that process, Harness-Vue exports a global mixin for the options API and a composable for the composition API that detect what page your component is currently referring to using the following logic:
-
-  * first by checking if the route name (if vue-router is used) matches the name of an installed page definition
-  * second by checking if there is only one page and no vue-router installed and using that by default
-  * third by checking for a provided `waypoint` rop that matches a page definition key
+Building an application with Harness-Vue begins with defining a page. [Page Definition Files](/usage/page-definitions) are Javascript classes that Harness-Vue consumes and translates into Pinia stores. In your page definition, you'll define metadata such as [filters](/usage/filters) and [charts](/usage/charts), as well as a [loadData](/usages/lifecycle) function.
 
 
-### Options API mixin
+## Harness-Vue Concepts
+You can think of **Filters**, **loadData** and **Charts** as a workflow.
 
-If the mixin detects a match, all of the available Harness-Vue API functions are mapped to the component using the [mapState](https://pinia.vuejs.org/core-concepts/state.html#usage-with-the-options-api) and [mapActions](https://pinia.vuejs.org/core-concepts/actions.html#without-setup) functions from Pinia. Using this mixin makes all Harness API functions available in the `this` context in your component.
+ **Filters** are the entities that users can manipulate to interact with your dashboard. Harness-Vue filters are often represented as form controls and buttons.
+ 
+ **Charts** house the data you use to produce visualizations, tables, and other data-driven page elements. Harness-Vue charts are often used to produce visualizations with data visualization libraries and tables.
+ 
+ The **loadData** function is your page-level function in which a developer uses filters to retrieve, manipulate, format and return data into charts. When the Harness-Vue loadData function is called, it consumes "inputs" (filters) and produces "outputs" (charts).
 
-To install the mixin, import it from the core library and install it as a mixin.
+ ## Page Definitions 
+ The Page Definition is used to generate a Pinia store. Definitions for filters and charts shape the underlying attribute structure, and Harness-Vue getters and actions are included in the defined store to allow easy developer interactivity with Harness-Vue defined elements.
 
-`main.js`
-```javascript
-import { harnessPlugin, harnessMixin } from "@rtidatascience/harness-vue"
-// pages? more on this later!
-import pages from "./harness-pages/manifest"
-import App from "./App.vue"
+ For more information on how charts are defined and used in a Harness-Vue Page definition, see the [Working With Charts](/usage/charts) page.
 
-const app = createApp(App)
-const pinia = createPinia()
+ For more information on how filters are defined and used in a Harness-Vue Page definition, see the [Working With Filters](/usage/filters) page.
 
-app.use(pinia)
-app.use(harnessPlugin, { pinia, pages, router })
-app.mixin(harnessMixin(pinia));
-app.mount("#app");
-```
+ For more information on the loadData function and lifecycle, see the [loadData Lifecycle](/usage/lifecycle) page.
 
-Component Example:
-```vue
-<template>
-  <div>
-    {{ getChartData(chartKey) }}
-  </div>
-</template>
-<script>
-  export default {
-    name: 'chart',
-    props: {
-      chartKey: {
-        required: true,
-        type: String
-      }
-    }
-  }
-</script>
-```
+## Components
+ Additionally, the Page Definition has many attributes dedicated to storing components. This is a convenience feature to allow for less verbose and more automatically generated layouts, which are showcased in Harness-Vue-Bootstrap's [filterGrid](https://bootstrap.harnessjs.org/components/layouts/filterGrid.html) and [chartGrid](https://bootstrap.harnessjs.org/components/layouts/chartGrid.html).
 
-### Composable
-For the composition API, Harness-Vue publishes a composable that follows the logic defined above to determine the page and returns the appropriate pinia store for you to use. 
 
-Component example:
-```vue 
-<template>
-  <div>
-    {{ harness.getChartData(chart.key) }}
-  </div>
-</template>
-
-<script setup>
-import { defineProps } from "vue";
-import { useHarnessComposable } from "@rtidatascience/harness-vue";
-defineProps({
-  chart: {
-    type: Object,
-    required: true,
-  },
-});
-const harness = useHarnessComposable();
-</script>
-
-```
+## Working Example
+For a working example of showcased features, try cloning and setting up the [Harness-Vue-Starter-Template](https://github.com/RTIInternational/harness-vue-starter-template). This starter template has Harness-Vue and Harness-Vue-Bootstrap preinstalled, as well as an example page definition (`/src/harness-pages/examplePage.js`).
