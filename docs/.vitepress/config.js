@@ -29,6 +29,13 @@ export default {
                 ]
             },
             {
+                text: 'Examples',
+                collapsible: true,
+                items: [
+                    {text: 'Filter Components', link: '/examples/filter-components'},
+                ]
+            },
+            {
                 text: 'API',
                 collapsible: true,
                 items: [
