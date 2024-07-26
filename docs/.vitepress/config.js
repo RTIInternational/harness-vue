@@ -33,6 +33,7 @@ export default {
                 collapsible: true,
                 items: [
                     {text: 'Filter Components', link: '/examples/filter-components'},
+                    {text: 'Tagify Component Snippet', link: '/examples/tagify-component-snippet.md'},
                 ]
             },
             {
