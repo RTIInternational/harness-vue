@@ -1,5 +1,7 @@
 # Tagify Input Component
-[Tagify](https://github.com/yairEO/tagify) offers a handy component for selecting multiple items via search from a large list of options. In this component we connect our Harness-Vue filter data to this component to allow for the Tagify tagging component to be used in conjuction with the Harness-Vue state flow.  
+[Tagify](https://github.com/yairEO/tagify) offers a handy component for selecting multiple items via search from a large list of options. In this component we connect our Harness-Vue filter data to this component to allow for the Tagify tagging component to be used in conjunction with the Harness-Vue state flow.
+
+![Tagify Component](https://repository-images.githubusercontent.com/70848287/a1ace900-bb67-11e9-8ae3-c15d59ad19e5 "Tagify Component")
 
 [[toc]]
 
@@ -9,16 +11,16 @@
 
 ## Example Use Case
 
-This component is particularly useful when a user must choose multiple options from a list that is too largy to scroll through. Consider a scenario, where a user must select from a large list of individual product options. The Tagify component allows the user to quickly search and select multiple products of interest for data visualization.
+This component is particularly useful when a user must choose multiple options from a list that is too large to scroll through. Consider a scenario, where a user must select from a large list of individual product options. The Tagify component allows the user to quickly search and select multiple products of interest for data visualization.
 
 ![Example Tagify Screenshot](../assets/Tagify_Screenshot.png "Tagify Screenshot")
 
 ## Connecting to Harness-Vue State
 
 
-As discussed in the [Filter Components]() section, any custom input controlling a Harness-Vue filter must be able to both retrieve the current value of the filter and update it.
+As discussed in the [Filter Components]() section, any custom input controlling a Harness-Vue filter must be able to both retrieve and update the current value of the filter.
 
-This component utilizes the `onMounted` lifecycle hook to initialize the Tagify input with the current state of the Harness-Vue filter. It also sets up a watcher on the filter options, updating the Tagify input's whitelist (the list of suggested options displayed to the user) whenever these options change. This setup allows the suggestion options to be dynamically updated based on changes to another filter.
+This component utilizes the `onMounted` lifecycle hook to initialize the Tagify input with the current state of the Harness-Vue filter. The component initializes a watcher on the filter options, updating the Tagify input's suggested options (whitelist). This setup allows the suggestion options to be dynamically updated based on changes to another filter.
 
 Additionally, the component establishes event listeners for the add and remove events of the Tagify input. Any addition or removal of a tag triggers an update to the Harness-Vue filter and a subsequent data reload.
 
