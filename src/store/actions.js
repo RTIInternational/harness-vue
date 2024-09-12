@@ -8,8 +8,15 @@ export default function getActions(pageDefinition) {
   const actions = {};
   const filters = pageDefinition.filters();
   for (const filterKey in filters) {
-    const filterAction = function (payload) {
+    const filterAction = async function (payload) {
+      if (filters[filterKey].beforeSet) {
+        await filters[filterKey].beforeSet(payload, this);
+      }
       this[`${filterKey}Filter`] = payload;
+      if (filters[filterKey].afterSet) {
+        await filters[filterKey].afterSet(payload, this);
+      }
+      await this.loadData();
     };
     const optionsAction = function (payload) {
       this[`${filterKey}Options`] = payload;
@@ -20,8 +27,14 @@ export default function getActions(pageDefinition) {
 
   const charts = pageDefinition.charts();
   for (const chartKey in charts) {
-    const chartAction = function (payload) {
+    const chartAction = async function (payload) {
+      if (charts[chartKey].beforeSet) {
+        await charts[chartKey].beforeSet(payload, this);
+      }
       this[`${chartKey}ChartData`] = payload;
+      if (charts[chartKey].afterSet) {
+        await charts[chartKey].afterSet(payload, this);
+      }
     };
     actions[`set${capitalize(chartKey)}ChartData`] = chartAction;
   }
