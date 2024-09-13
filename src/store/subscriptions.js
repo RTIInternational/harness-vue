@@ -69,16 +69,17 @@ async function checkForLoadData(name, store) {
     const filterKey = store.getFilterKeys.find(
       (filter) => capitalize(filter) === filterName,
     );
-    const filterObj = store.getFilterDefinition(filterKey);
-
-    if (
-      store[`${filterKey}TriggerLoadData`] &&
-      !(
-        Object.hasOwn(filterObj, "triggerLoadData") &&
-        filterObj.triggerLoadData == false
-      )
-    ) {
-      await store.loadData();
+    if (filterKey) {
+      const filterObj = store.getFilterDefinition(filterKey);
+      if (
+        store[`${filterKey}TriggerLoadData`] &&
+        !(
+          Object.hasOwn(filterObj, "triggerLoadData") &&
+          filterObj.triggerLoadData == false
+        )
+      ) {
+        await store.loadData();
+      }
     }
   }
 }
