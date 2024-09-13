@@ -8,8 +8,9 @@ export default function getActions(pageDefinition) {
   const actions = {};
   const filters = pageDefinition.filters();
   for (const filterKey in filters) {
-    const filterAction = async function (payload) {
+    const filterAction = async function (payload, triggerLoadData = true) {
       this[`${filterKey}Filter`] = payload;
+      this[`${filterKey}TriggerLoadData`] = triggerLoadData;
     };
     const optionsAction = async function (payload) {
       this[`${filterKey}Options`] = payload;
