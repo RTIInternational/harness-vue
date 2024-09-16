@@ -246,7 +246,7 @@ export function getFilterActions() {
      * @param  {Boolean} triggerLoadData=true optional variable, if true will trigger a loadData action
      * @memberof module:pageStore
      */
-    setFilter(key, payload, triggerLoadData = true) {
+    setFilter(key, payload, triggerLoadData = false) {
       this._validFilterKey(key);
       this[`set${capitalize(key)}Filter`](payload, triggerLoadData);
     },
