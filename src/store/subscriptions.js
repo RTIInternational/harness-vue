@@ -70,14 +70,8 @@ async function checkForLoadData(name, store) {
       (filter) => capitalize(filter) === filterName,
     );
     if (filterKey) {
-      const filterObj = store.getFilterDefinition(filterKey);
-      if (
-        store[`${filterKey}TriggerLoadData`] &&
-        !(
-          Object.hasOwn(filterObj, "triggerLoadData") &&
-          filterObj.triggerLoadData == false
-        )
-      ) {
+      // check to see if last run of setFilter enabled triggerLoadData
+      if (store[`${filterKey}TriggerLoadData`]) {
         await store.loadData();
       }
     }
