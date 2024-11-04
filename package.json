@@ -32,7 +32,7 @@
   "dependencies": {
     "file-saver": "^2.0.5",
     "pinia": "^2.0.21",
-    "vitepress": "^1.0.0-rc.40",
+    "vitepress": "^1.4.5",
     "vue": "^3.2.37"
   },
   "devDependencies": {
