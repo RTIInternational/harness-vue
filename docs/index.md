@@ -14,7 +14,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /introduction/
+      link: /introduction/index.html
     - theme: alt
       text: View on GitHub
       link: https://github.com/RTIInternational/harness-vue

@@ -10,9 +10,10 @@ export default {
                 text: 'Introduction',
                 collapsible: true,
                 items: [
-                    {text: 'About', link: '/introduction/'},
+                    {text: 'About', link: '/introduction/index'},
+                    {text: 'Installation', link: '/introduction/installation'},
                     {text: 'Getting Started', link: '/introduction/getting-started'},
-                    {text: 'Page Definitions', link: '/introduction/page-definitions'}
+
                 ]
             },
             {
@@ -20,9 +21,18 @@ export default {
                 collapsible: true,
                 items: [
                     {text: 'The loadData Lifecycle', link: '/usage/lifecycle'},
+                    {text: 'Page Definitions', link: '/usage/page-definitions'},
                     {text: 'Working with Charts', link: '/usage/charts'},
                     {text: 'Working with Filters', link: '/usage/filters'},
                     {text: "Extending the Store", link: '/usage/extending'},
+                    {text: "Use in Components", link: '/usage/components'},
+                ]
+            },
+            {
+                text: 'Examples',
+                collapsible: true,
+                items: [
+                    {text: 'Filter Components', link: '/examples/filter-components'},
                 ]
             },
             {
@@ -39,19 +49,12 @@ export default {
                 ]
             },
             {
-                text: 'Migrating From Harness',
-                collapsible: true,
-                items: [
-                    {text: 'Migration Guide', link: '/migration/'}
-                ]
-            },
-            {
                 text: 'Harness-Vue Ecosystem',
                 collapsible: true,
                 items: [
                     {text: 'Github', link: 'https://github.com/RTIInternational/harness-vue'},
-                    {text: 'Harness-Vue Bootstrap', link: 'https://bootstrap.harnessjs.org'},
-                    {text: 'Harness-Vue Starter Template', link: 'https://github.com/RTIInternational/harness-vue-starter-template'}
+                    {text: 'Harness-Vue-Bootstrap', link: 'https://bootstrap.harnessjs.org'},
+                    {text: 'Harness-Vue-Starter-Template', link: 'https://github.com/RTIInternational/harness-vue-starter-template'}
                 ]
             }
         ],
