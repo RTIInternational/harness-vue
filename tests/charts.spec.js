@@ -49,7 +49,7 @@ describe("DV Chart functions", () => {
     let testChart3Data = [{ testchart3: "success" }];
     hs.setChartData("testchart3", testChart3Data);
     expect(hs.getChartProps("testchart3").chartTitle).toEqual("Test Chart 3");
-    // eslint-disable-next-line no-useless-escape
+
     expect(hs.generateCSV("testchart3")).toEqual('testchart3\n"success"');
   });
   // TODO: Test for downloadCsv
