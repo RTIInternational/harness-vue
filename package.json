@@ -31,22 +31,22 @@
   },
   "dependencies": {
     "file-saver": "^2.0.5",
-    "pinia": "^2.0.21",
-    "vitepress": "^1.0.0-rc.40",
+    "pinia": "^3.0.1",
+    "vite-plugin-vue-devtools": "^7.7.2",
+    "vitepress": "^1.6.3",
     "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.1.4",
-    "@vitejs/plugin-vue": "^4.2.3",
-    "@vitest/coverage-c8": "^0.33.0",
-    "@vue/eslint-config-prettier": "^8.0.0",
-    "@vue/test-utils": "^2.0.2",
-    "eslint": "^8.22.0",
-    "eslint-plugin-vue": "^9.3.0",
-    "jsdoc-to-markdown": "^8.0.0",
-    "jsdom": "^22.1.0",
-    "prettier": "^3.0.0",
-    "vite": "^4.4.8",
-    "vitest": "^0.33.0"
+    "@rushstack/eslint-patch": "^1.10.5",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/test-utils": "^2.4.6",
+    "eslint": "^9.20.1",
+    "eslint-plugin-vue": "^9.32.0",
+    "jsdoc-to-markdown": "^9.1.1",
+    "jsdom": "^26.0.0",
+    "prettier": "^3.5.1",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
   }
 }

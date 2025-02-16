@@ -23,7 +23,7 @@ The following API functions allow developers to interact with filters. For more 
     * [.areFiltersDirty()](#module_pageStore.areFiltersDirty)
     * [.getDirtyFilters()](#module_pageStore.getDirtyFilters)
     * [.isFilterValid(key)](#module_pageStore.isFilterValid)
-    * [.setFilter(key, payload)](#module_pageStore.setFilter)
+    * [.setFilter(key, payload, triggerLoadData)](#module_pageStore.setFilter)
     * [.setFilterLabel(key, payload)](#module_pageStore.setFilterLabel)
     * [.setOptionsForFilter(key, payload, setOptionToDefault)](#module_pageStore.setOptionsForFilter)
     * [.setOptionPropertyToBoolean(filter, optionKeysToSet, property, bool)](#module_pageStore.setOptionPropertyToBoolean)
@@ -181,15 +181,16 @@ A filter with neither always returns true
 
 <a name="module_pageStore.setFilter"></a>
 
-### pageStore.setFilter(key, payload)
+### pageStore.setFilter(key, payload, triggerLoadData)
 Sets a given filter's value
 
 **Kind**: static method of [<code>pageStore</code>](#module_pageStore)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| key | <code>String</code> | a filter key |
-| payload | <code>any</code> | a payload to set |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| key | <code>String</code> |  | a filter key |
+| payload | <code>any</code> |  | a payload to set |
+| triggerLoadData | <code>Boolean</code> | <code>true</code> | optional variable, if true will trigger a loadData action |
 
 <a name="module_pageStore.setFilterLabel"></a>
 

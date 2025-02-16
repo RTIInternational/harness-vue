@@ -1,32 +1,22 @@
-import { resolve } from "path";
+import { fileURLToPath, URL } from "node:url";
+
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import vueDevTools from "vite-plugin-vue-devtools";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // https://vitejs.dev/guide/build.html#library-mode
-  build: {
-    lib: {
-      // eslint-disable-next-line
-      entry: resolve(__dirname, "src/harness.js"),
-      name: "harness-vue",
-      fileName: (format) => `harness-vue.${format}.js`,
+  plugins: [vue(), vueDevTools()],
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
-    rollupOptions: {
-      external: ["vue"],
-      output: {
-        // Provide global variables to use in the UMD build
-        // Add external deps here
-        globals: {
-          vue: "Vue",
-        },
-      },
-    },
-    test: {
-      coverage: {
-        reporter: ["json", "text-summary"],
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        quietDeps: true,
       },
     },
   },
-  plugins: [vue()],
 });
