@@ -18,6 +18,7 @@ export default function getState(pageDefinition) {
       filters[filterKey].options,
     );
     state[`${filterKey}Options`] = filters[filterKey].options || [];
+    state[`${filterKey}TriggerLoadData`] = true;
   }
 
   // add chart data container for each chart type

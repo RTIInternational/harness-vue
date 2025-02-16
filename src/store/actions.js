@@ -8,10 +8,11 @@ export default function getActions(pageDefinition) {
   const actions = {};
   const filters = pageDefinition.filters();
   for (const filterKey in filters) {
-    const filterAction = function (payload) {
+    const filterAction = async function (payload, triggerLoadData = true) {
       this[`${filterKey}Filter`] = payload;
+      this[`${filterKey}TriggerLoadData`] = triggerLoadData;
     };
-    const optionsAction = function (payload) {
+    const optionsAction = async function (payload) {
       this[`${filterKey}Options`] = payload;
     };
     actions[`set${capitalize(filterKey)}Filter`] = filterAction;
@@ -67,9 +68,6 @@ export default function getActions(pageDefinition) {
         .loadData(pageDefinition, pageStore)
         .then(function (response) {
           return response;
-        })
-        .catch(function (error) {
-          throw Error(error);
         });
       for (const chartKey in pageDefinition.charts()) {
         if (data[chartKey] === null) {
