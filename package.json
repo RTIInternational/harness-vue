@@ -2,7 +2,7 @@
   "name": "@rtidatascience/harness-vue",
   "author": "RTI CDS <alexharding@rti.org>",
   "private": false,
-  "version": "1.8.0",
+  "version": "1.9.0-0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -32,8 +32,6 @@
   "dependencies": {
     "file-saver": "^2.0.5",
     "pinia": "^3.0.1",
-    "vite-plugin-vue-devtools": "^7.7.2",
-    "vitepress": "^1.6.3",
     "vue": "^3.2.37"
   },
   "devDependencies": {
@@ -47,6 +45,8 @@
     "jsdom": "^26.0.0",
     "prettier": "^3.5.1",
     "vite": "^6.1.0",
+    "vite-plugin-vue-devtools": "^8.0.1",
+    "vitepress": "^1.6.4",
     "vitest": "^3.0.5"
   }
 }
